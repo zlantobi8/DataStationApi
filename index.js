@@ -5,7 +5,7 @@ const app = express();
 app.use(bodyParser.json());
 require('dotenv').config();
 
-app.get("/GetuserInfo", async (req, res) => {
+app.get("/api/GetuserInfo", async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`,
@@ -28,7 +28,7 @@ app.get("/GetuserInfo", async (req, res) => {
 
 
 
-app.post("/buyData", async (req, res) => {
+app.post("/api/buyData", async (req, res) => {
     const url = "https://datastationapi.com/api/data/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`,
@@ -63,7 +63,7 @@ app.post("/buyData", async (req, res) => {
 
 
 
-app.post("/buyAirtime", async (req, res) => {
+app.post("/api/buyAirtime", async (req, res) => {
     const url = "https://datastationapi.com/api/topup/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`, // Use environment variable for the token
