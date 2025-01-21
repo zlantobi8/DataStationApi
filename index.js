@@ -89,7 +89,7 @@ app.post("/buyAirtime", async (req, res) => {
 
 
 
-app.get('/fetchData', async (req, res) => {
+app.get('/api/fetchData', async (req, res) => {
     const url = 'https://datastationapi.com/api/data/';
     const headers = {
         'Authorization': `Token ${process.env.APIKEY}`, // Include your API Token
