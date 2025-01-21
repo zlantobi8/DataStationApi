@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
+      "src": "index.js",   // The main file with Express routes
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/DataStationApi",
-      "dest": "/index.js"
+      "src": "/api/(.*)",     // This matches all routes prefixed with /api/
+      "dest": "/index.js"     // This will direct the request to index.js
     }
   ]
 }
