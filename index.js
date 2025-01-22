@@ -41,12 +41,6 @@ app.post("/api/buyData", async (req, res) => {
         // Send POST request to the external API
         const response = await axios.post(url, data, { headers });
 
-        // Calculate the percentage gain (e.g., 15% gain)
-        const gainPercentage = 15;
-        const originalAmount = parseFloat(response.data.plan_amount); // The original amount (257.0)
-        const increasedAmount = originalAmount * (1 + gainPercentage / 100); // Apply the percentage increase
-        response.data.plan_amount = increasedAmount.toFixed(2); // Update the amount with the new value, rounded to 2 decimal places
-
         // Send the updated response back to the client
         res.status(200).send(response.data);
     } catch (e) {
