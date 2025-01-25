@@ -6,7 +6,6 @@ app.use(bodyParser.json());
 require('dotenv').config();
 
 
-
 app.get("/api/GetuserInfo", async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
@@ -17,29 +16,19 @@ app.get("/api/GetuserInfo", async (req, res) => {
     try {
         const response = await axios.get(url, { headers });
 
-        // Safely add a 15% markup to all plan amounts in Dataplans
-        if (response.data && response.data.Dataplans) {
-            const dataplans = response.data.Dataplans;
-
-            // Iterate through each network's plans
-            for (const [networkKey, networkPlans] of Object.entries(dataplans)) {
-                for (const [planType, plans] of Object.entries(networkPlans)) {
-                    if (Array.isArray(plans)) {
-                        plans.forEach(plan => {
-                            if (plan.plan_amount) {
-                                // Apply the 15% markup and round to 2 decimal places
-                                plan.plan_amount = (parseFloat(plan.plan_amount) * 1.15).toFixed(2);
-                            }
-                        });
-                    }
-                }
-            }
+        // Process the data and add an 11.67% markup to MTN_PLAN amounts
+        if (response.data?.Dataplans?.MTN_PLAN?.ALL) {
+            response.data.Dataplans.MTN_PLAN.ALL = response.data.Dataplans.MTN_PLAN.ALL.map((plan) => {
+                return {
+                    ...plan,
+                    plan_amount: Math.round(plan.plan_amount * 1.1167), // Add 11.67% and round to the nearest integer
+                };
+            });
         }
 
-        // Send the modified response back to the frontend
         res.status(200).send(response.data);
     } catch (e) {
-        console.error("Error fetching data from external API:", e.message);
+        console.error(e.message);
         res.status(500).send({ error: "Failed to fetch data from the external API." });
     }
 });
