@@ -26,7 +26,7 @@ app.get("/api/GetuserInfo", async (req, res) => {
                         plans.forEach(plan => {
                             if (plan.plan_amount) {
                                 // Apply the 11.67% markup and round to 2 decimal places
-                                  plan.plan_amount = Math.round(parseFloat(plan.plan_amount) * 1.1167);
+                                 plan.plan_amount = (parseFloat(plan.plan_amount) * 1.1167).toFixed(2);
                                
                             }
                         });
