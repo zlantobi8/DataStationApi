@@ -16,7 +16,15 @@ app.get("/api/GetuserInfo", async (req, res) => {
 
     try {
         const response = await axios.get(url, { headers });
-        res.status(200).send(response.data);
+
+        // Add 15% markup to MTN_PLAN.ALL amounts directly
+        if (response.data?.Dataplans?.MTN_PLAN?.ALL) {
+            response.data.Dataplans.MTN_PLAN.ALL.forEach((plan) => {
+                plan.plan_amount = Math.round(plan.plan_amount * 1.15); // Update the amount directly
+            });
+        }
+
+        res.status(200).send(response.data); // Send the updated response back to the user
     } catch (e) {
         console.error(e.message);
         res.status(500).send({ error: "Failed to fetch data from the external API." });
