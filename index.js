@@ -17,16 +17,29 @@ app.get("/api/GetuserInfo", async (req, res) => {
     try {
         const response = await axios.get(url, { headers });
 
-        // Add 15% markup to MTN_PLAN.ALL amounts directly
-        if (response.data?.Dataplans?.MTN_PLAN?.ALL) {
-            response.data.Dataplans.MTN_PLAN.ALL.forEach((plan) => {
-                plan.plan_amount = Math.round(plan.plan_amount * 1.15); // Update the amount directly
-            });
+        // Safely add a 15% markup to all plan amounts in Dataplans
+        if (response.data && response.data.Dataplans) {
+            const dataplans = response.data.Dataplans;
+
+            // Iterate through each network's plans
+            for (const [networkKey, networkPlans] of Object.entries(dataplans)) {
+                for (const [planType, plans] of Object.entries(networkPlans)) {
+                    if (Array.isArray(plans)) {
+                        plans.forEach(plan => {
+                            if (plan.plan_amount) {
+                                // Apply the 15% markup and round to 2 decimal places
+                                plan.plan_amount = (parseFloat(plan.plan_amount) * 1.15).toFixed(2);
+                            }
+                        });
+                    }
+                }
+            }
         }
 
-        res.status(200).send(response.data); // Send the updated response back to the user
+        // Send the modified response back to the frontend
+        res.status(200).send(response.data);
     } catch (e) {
-        console.error(e.message);
+        console.error("Error fetching data from external API:", e.message);
         res.status(500).send({ error: "Failed to fetch data from the external API." });
     }
 });
