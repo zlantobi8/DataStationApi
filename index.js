@@ -25,11 +25,9 @@ app.get("/api/GetuserInfo", async (req, res) => {
                     if (Array.isArray(plans)) {
                         plans.forEach(plan => {
                             if (plan.plan_amount) {
-                                // Parse plan amount as a float, apply the markup, and round to the nearest integer
-                                const amount = parseFloat(plan.plan_amount);
-                                if (!isNaN(amount)) {
-                                    plan.plan_amount = Math.round(amount * 1.1167);
-                                }
+                                // Apply the 11.67% markup and round to 2 decimal places
+                                 plan.plan_amount = (parseFloat(plan.plan_amount) * 1.1167).toFixed(2);
+                               
                             }
                         });
                     }
@@ -38,10 +36,10 @@ app.get("/api/GetuserInfo", async (req, res) => {
         }
 
         // Send the modified response back to the frontend
-        res.status(200).json(response.data);
+        res.status(200).send(response.data);
     } catch (e) {
         console.error("Error fetching data from external API:", e.message);
-        res.status(500).json({ error: "Failed to fetch data from the external API." });
+        res.status(500).send({ error: "Failed to fetch data from the external API." });
     }
 });
 
