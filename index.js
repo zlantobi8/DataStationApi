@@ -28,8 +28,8 @@ app.get("/api/GetuserInfo", async (req, res) => {
                                 // Apply the 11.67% markup
                                 let updatedAmount = parseFloat(plan.plan_amount) * 1.1167;
                                 
-                                // Round up to two decimal places
-                                plan.plan_amount = (Math.ceil(updatedAmount * 100) / 100).toFixed(2);
+                                // Round up to the nearest whole number
+                                plan.plan_amount = Math.ceil(updatedAmount).toFixed(2);
                             }
                         });
                     }
@@ -44,7 +44,6 @@ app.get("/api/GetuserInfo", async (req, res) => {
         res.status(500).send({ error: "Failed to fetch data from the external API." });
     }
 });
-
 
 
 
