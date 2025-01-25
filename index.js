@@ -5,6 +5,8 @@ const app = express();
 app.use(bodyParser.json());
 require('dotenv').config();
 
+
+
 app.get("/api/GetuserInfo", async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
@@ -14,28 +16,12 @@ app.get("/api/GetuserInfo", async (req, res) => {
 
     try {
         const response = await axios.get(url, { headers });
-        const myData = response.data;
-
-        // Process the data and add a 15% markup to MTN_PLAN amounts
-        if (myData?.Dataplans?.MTN_PLAN?.ALL) {
-            myData.Dataplans.MTN_PLAN.ALL = myData.Dataplans.MTN_PLAN.ALL.map((plan) => {
-                return {
-                    ...plan,
-                    plan_amount: Math.round(plan.plan_amount * 1.15), // Add 15% and round to the nearest integer
-                };
-            });
-        }
-
-        res.status(200).send(myData);
+        res.status(200).send(response.data);
     } catch (e) {
         console.error(e.message);
         res.status(500).send({ error: "Failed to fetch data from the external API." });
     }
 });
-
-
-
-
 
 
 
