@@ -5,7 +5,6 @@ const app = express();
 app.use(bodyParser.json());
 require('dotenv').config();
 
-
 app.get("/api/GetuserInfo", async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
@@ -16,7 +15,7 @@ app.get("/api/GetuserInfo", async (req, res) => {
     try {
         const response = await axios.get(url, { headers });
 
-        // Safely add a 15% markup to all plan amounts in Dataplans
+        // Safely add an 11.67% markup to all plan amounts in Dataplans
         if (response.data && response.data.Dataplans) {
             const dataplans = response.data.Dataplans;
 
@@ -26,8 +25,8 @@ app.get("/api/GetuserInfo", async (req, res) => {
                     if (Array.isArray(plans)) {
                         plans.forEach(plan => {
                             if (plan.plan_amount) {
-                                // Apply the 15% markup and round to 2 decimal places
-                                plan.plan_amount = (parseFloat(plan.plan_amount) * 1.15).toFixed(2);
+                                // Apply the 11.67% markup and round to 2 decimal places
+                                plan.plan_amount = (parseFloat(plan.plan_amount) * 1.1167).toFixed(2);
                             }
                         });
                     }
