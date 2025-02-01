@@ -5,7 +5,7 @@ const app = express();
 app.use(bodyParser.json());
 require('dotenv').config();
 const admin = require("firebase-admin");
-const serviceAccount = require("./google-service.json")
+const serviceAccount = require("./google-service.json");
 
 
 const serviceAccount = {
