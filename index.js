@@ -147,7 +147,8 @@ app.post("/api/buyData", async (req, res) => {
             const planAmount = parseFloat(result.plan_amount);
 
             // Calculate 11.67% of the plan amount
-            const gain = (planAmount * 11.67) / 100;
+          const gain = (planAmount * 7.78) / 100;
+
 
             // Fetch the current gain value from the Admin document
             const adminRef = db.collection("Admin").doc("Admin404");
