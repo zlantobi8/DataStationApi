@@ -113,12 +113,13 @@ app.post("/api/buyData", async (req, res) => {
             });
         }
 
+  let planAmountWithIncrease = result.plan_amount * (1 + 7.78 / 100);
         const transactionData = {
             id: result.id,
             ident: result.ident,
             mobile_number: result.mobile_number,
-            amount: result.plan_amount,
-            plan_amount: result.plan_amount,
+            amount: planAmountWithIncrease.toString(),
+            plan_amount:planAmountWithIncrease.toString(),
             plan_network: result.plan_network,
             Status: result.Status,
             api_response: result.api_response,
@@ -128,7 +129,6 @@ app.post("/api/buyData", async (req, res) => {
             plan: result.plan || "",
             plan_name: result.plan_name || "",
         };
-
         // Store transaction in Firestore under the user's UID
         await db.collection("users").doc(uid)  // Store under uid
             .collection("airtime_transaction")
