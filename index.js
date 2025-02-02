@@ -53,7 +53,8 @@ app.get("/api/GetuserInfo", async (req, res) => {
                         plans.forEach(plan => {
                             if (plan.plan_amount) {
                                 // Apply the 11.67% markup
-                                let updatedAmount = parseFloat(plan.plan_amount) * 1.1167;
+                              let updatedAmount = parseFloat(plan.plan_amount) * (1 + 7.78 / 100);
+
 
                                 // Round up to the nearest whole number
                                 plan.plan_amount = Math.ceil(updatedAmount).toFixed(2);
