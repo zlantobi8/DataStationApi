@@ -83,9 +83,28 @@ app.post("/api/buyData", async (req, res) => {
     };
 
     try {
-        const { uid, mobile_number, network, plan } = req.body;
+        // 1. Verify the Firebase Token in the Authorization header
+        const authHeader = req.headers.authorization;
 
-        if (!uid || !mobile_number || !network || !plan) {
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return res.status(401).json({ message: "Unauthorized: Missing or invalid token" });
+        }
+
+        const token = authHeader.split("Bearer ")[1];
+        
+        // Verify the Firebase ID Token
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        
+        // Get the UID from the decoded token
+        const uid = decodedToken.uid;
+
+        // Now we can use the UID safely since the user is authenticated
+        console.log("Authenticated UID:", uid);
+
+        // 2. Extract request body
+        const { mobile_number, network, plan } = req.body;
+
+        if (!mobile_number || !network || !plan) {
             return res.status(400).json({ message: "Missing required fields." });
         }
 
@@ -93,6 +112,7 @@ app.post("/api/buyData", async (req, res) => {
 
         console.log("Sending request to external API:", apiRequestData);
 
+        // 3. Make the external API call to buy data
         const response = await axios.post(url, apiRequestData, { headers });
         const result = response.data;
 
@@ -100,33 +120,30 @@ app.post("/api/buyData", async (req, res) => {
             return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
         }
 
-        // Increase price by 7.78%
-    // Increase the plan amount by 7.78% and round the result to the nearest integer
-let planAmountWithIncrease = Math.round(result.plan_amount * (1 + 7.78 / 100));
+        // 4. Apply the markup and round the price
+        let planAmountWithIncrease = Math.round(result.plan_amount * (1 + 7.78 / 100));
 
-
-// Update transaction data
-const transactionData = {
-    id: result.id,
-    ident: result.ident,
-    mobile_number: result.mobile_number,
-    plan: result.plan,
-    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
-    plan_network: result.plan_network,
-    plan_name: result.plan_name,
-    api_response: result.api_response,
-    create_date: result.create_date,
-    Ported_number: result.Ported_number,
-    Status: result.Status,
-};
-
+        // 5. Store transaction data in Firestore
+        const transactionData = {
+            id: result.id,
+            ident: result.ident,
+            mobile_number: result.mobile_number,
+            plan: result.plan,
+            plan_amount: planAmountWithIncrease.toString(),
+            plan_network: result.plan_network,
+            plan_name: result.plan_name,
+            api_response: result.api_response,
+            create_date: result.create_date,
+            Ported_number: result.Ported_number,
+            Status: result.Status,
+        };
 
         await db.collection("users").doc(uid)
             .collection("airtime_transaction")
             .doc(result.id.toString())
             .set(transactionData);
 
-        // Deduct balance from the user
+        // 6. Deduct balance from the user
         const userRef = db.collection("users").doc(uid);
         const userDoc = await userRef.get();
         const currentBalance = userDoc.data()?.Balance;
@@ -145,24 +162,23 @@ const transactionData = {
             const newBalance = currentBalance - planAmountWithIncrease;
             await userRef.update({ Balance: newBalance });
 
-          // API Response (Flat JSON)
-return res.status(200).json({
-    api_response: result.api_response,
-    balance_after: newBalance.toString(),
-    balance_before: currentBalance.toString(),
-    create_date: result.create_date,
-    customer_ref: result.ident,
-    id: result.id,
-    ident: result.ident,
-    mobile_number: result.mobile_number,
-    network: result.network,
-    plan: result.plan,
-    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
-    plan_name: result.plan_name,
-    plan_network: result.plan_network,
-    Ported_number: result.Ported_number,
-    Status: result.Status,
-});
+            return res.status(200).json({
+                api_response: result.api_response,
+                balance_after: newBalance.toString(),
+                balance_before: currentBalance.toString(),
+                create_date: result.create_date,
+                customer_ref: result.ident,
+                id: result.id,
+                ident: result.ident,
+                mobile_number: result.mobile_number,
+                network: result.network,
+                plan: result.plan,
+                plan_amount: planAmountWithIncrease.toString(),
+                plan_name: result.plan_name,
+                plan_network: result.plan_network,
+                Ported_number: result.Ported_number,
+                Status: result.Status,
+            });
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
         }
@@ -171,6 +187,7 @@ return res.status(200).json({
         res.status(e.response?.status || 500).json({ error: e.response?.data || "An error occurred." });
     }
 });
+
 
 
 
