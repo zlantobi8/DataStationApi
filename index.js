@@ -83,28 +83,9 @@ app.post("/api/buyData", async (req, res) => {
     };
 
     try {
-        // 1. Verify the Firebase Token in the Authorization header
-        const authHeader = req.headers.authorization;
+        const { uid, mobile_number, network, plan } = req.body;
 
-        if (!authHeader || !authHeader.startsWith("Bearer ")) {
-            return res.status(401).json({ message: "Unauthorized: Missing or invalid token" });
-        }
-
-        const token = authHeader.split("Bearer ")[1];
-        
-        // Verify the Firebase ID Token
-        const decodedToken = await admin.auth().verifyIdToken(token);
-        
-        // Get the UID from the decoded token
-        const uid = decodedToken.uid;
-
-        // Now we can use the UID safely since the user is authenticated
-        console.log("Authenticated UID:", uid);
-
-        // 2. Extract request body
-        const { mobile_number, network, plan } = req.body;
-
-        if (!mobile_number || !network || !plan) {
+        if (!uid || !mobile_number || !network || !plan) {
             return res.status(400).json({ message: "Missing required fields." });
         }
 
@@ -112,7 +93,6 @@ app.post("/api/buyData", async (req, res) => {
 
         console.log("Sending request to external API:", apiRequestData);
 
-        // 3. Make the external API call to buy data
         const response = await axios.post(url, apiRequestData, { headers });
         const result = response.data;
 
@@ -120,30 +100,31 @@ app.post("/api/buyData", async (req, res) => {
             return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
         }
 
-        // 4. Apply the markup and round the price
-        let planAmountWithIncrease = Math.round(result.plan_amount * (1 + 7.78 / 100));
+        // Increase price by 7.78%
+      let planAmountWithIncrease = Math.round(parseFloat(result.plan_amount) * (1 + 7.78 / 100));
 
-        // 5. Store transaction data in Firestore
-        const transactionData = {
-            id: result.id,
-            ident: result.ident,
-            mobile_number: result.mobile_number,
-            plan: result.plan,
-            plan_amount: planAmountWithIncrease.toString(),
-            plan_network: result.plan_network,
-            plan_name: result.plan_name,
-            api_response: result.api_response,
-            create_date: result.create_date,
-            Ported_number: result.Ported_number,
-            Status: result.Status,
-        };
+// Update transaction data
+const transactionData = {
+    id: result.id,
+    ident: result.ident,
+    mobile_number: result.mobile_number,
+    plan: result.plan,
+    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
+    plan_network: result.plan_network,
+    plan_name: result.plan_name,
+    api_response: result.api_response,
+    create_date: result.create_date,
+    Ported_number: result.Ported_number,
+    Status: result.Status,
+};
+
 
         await db.collection("users").doc(uid)
             .collection("airtime_transaction")
             .doc(result.id.toString())
             .set(transactionData);
 
-        // 6. Deduct balance from the user
+        // Deduct balance from the user
         const userRef = db.collection("users").doc(uid);
         const userDoc = await userRef.get();
         const currentBalance = userDoc.data()?.Balance;
@@ -162,23 +143,24 @@ app.post("/api/buyData", async (req, res) => {
             const newBalance = currentBalance - planAmountWithIncrease;
             await userRef.update({ Balance: newBalance });
 
-            return res.status(200).json({
-                api_response: result.api_response,
-                balance_after: newBalance.toString(),
-                balance_before: currentBalance.toString(),
-                create_date: result.create_date,
-                customer_ref: result.ident,
-                id: result.id,
-                ident: result.ident,
-                mobile_number: result.mobile_number,
-                network: result.network,
-                plan: result.plan,
-                plan_amount: planAmountWithIncrease.toString(),
-                plan_name: result.plan_name,
-                plan_network: result.plan_network,
-                Ported_number: result.Ported_number,
-                Status: result.Status,
-            });
+          // API Response (Flat JSON)
+return res.status(200).json({
+    api_response: result.api_response,
+    balance_after: newBalance.toString(),
+    balance_before: currentBalance.toString(),
+    create_date: result.create_date,
+    customer_ref: result.ident,
+    id: result.id,
+    ident: result.ident,
+    mobile_number: result.mobile_number,
+    network: result.network,
+    plan: result.plan,
+    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
+    plan_name: result.plan_name,
+    plan_network: result.plan_network,
+    Ported_number: result.Ported_number,
+    Status: result.Status,
+});
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
         }
@@ -187,7 +169,6 @@ app.post("/api/buyData", async (req, res) => {
         res.status(e.response?.status || 500).json({ error: e.response?.data || "An error occurred." });
     }
 });
-
 
 
 
@@ -209,31 +190,10 @@ app.post("/api/buyAirtime", async (req, res) => {
             });
         }
 
-        // Step 1: Validate User UID and check if their account is active
-        const userRef = db.collection("users").doc(uid);
-        const userDoc = await userRef.get();
-
-        if (!userDoc.exists) {
-            return res.status(404).send({
-                message: "User not found.",
-            });
-        }
-
-        const userData = userDoc.data();
-
-        if (!userData.isActive || userData.Balance <= 0) {
-            return res.status(400).send({
-                message: "User account is either inactive or has insufficient balance.",
-            });
-        }
-
-        // Increase the amount by 7.78% markup and round it up
-        const amountWithIncrease = Math.round(amount * (1 + 7.78 / 100));
-
         // Construct the data to send to the external API
         const apiRequestData = {
             network,
-            amount: amountWithIncrease,
+            amount,
             mobile_number,
             Ported_number: true,
             airtime_type: "VTU",
@@ -270,14 +230,21 @@ app.post("/api/buyAirtime", async (req, res) => {
         };
 
         // Store transaction in Firestore under the user's UID
-        await userRef.collection("airtime_transaction").doc(result.id.toString()).set(transactionData);
+        await db.collection("users").doc(uid)  // 🔹 Store under uid
+            .collection("airtime_transaction")
+            .doc(result.id.toString())
+            .set(transactionData);
 
         // Step 2: Deduct the balance from the user after a successful transaction
-        const currentBalance = userData.Balance;
+        const userRef = db.collection("users").doc(uid);
 
-        if (currentBalance >= amountWithIncrease) {
+        // Get the current balance of the user
+        const userDoc = await userRef.get();
+        const currentBalance = userDoc.data().Balance;
+
+        if (currentBalance >= amount) {
             // Deduct the balance
-            const newBalance = currentBalance - amountWithIncrease;
+            const newBalance = currentBalance - amount;
 
             // Update Firestore with the new balance
             await userRef.update({ Balance: newBalance });
@@ -286,8 +253,6 @@ app.post("/api/buyAirtime", async (req, res) => {
                 message: "Airtime purchase successful",
                 transaction: transactionData,
                 newBalance: newBalance,
-                original_amount: amount,
-                amount_with_increase: amountWithIncrease,
             });
         } else {
             return res.status(400).json({
@@ -302,7 +267,6 @@ app.post("/api/buyAirtime", async (req, res) => {
         });
     }
 });
-
 
 
 
