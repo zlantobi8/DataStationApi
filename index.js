@@ -209,10 +209,31 @@ app.post("/api/buyAirtime", async (req, res) => {
             });
         }
 
+        // Step 1: Validate User UID and check if their account is active
+        const userRef = db.collection("users").doc(uid);
+        const userDoc = await userRef.get();
+
+        if (!userDoc.exists) {
+            return res.status(404).send({
+                message: "User not found.",
+            });
+        }
+
+        const userData = userDoc.data();
+
+        if (!userData.isActive || userData.Balance <= 0) {
+            return res.status(400).send({
+                message: "User account is either inactive or has insufficient balance.",
+            });
+        }
+
+        // Increase the amount by 7.78% markup and round it up
+        const amountWithIncrease = Math.round(amount * (1 + 7.78 / 100));
+
         // Construct the data to send to the external API
         const apiRequestData = {
             network,
-            amount,
+            amount: amountWithIncrease,
             mobile_number,
             Ported_number: true,
             airtime_type: "VTU",
@@ -249,21 +270,14 @@ app.post("/api/buyAirtime", async (req, res) => {
         };
 
         // Store transaction in Firestore under the user's UID
-        await db.collection("users").doc(uid)  // 🔹 Store under uid
-            .collection("airtime_transaction")
-            .doc(result.id.toString())
-            .set(transactionData);
+        await userRef.collection("airtime_transaction").doc(result.id.toString()).set(transactionData);
 
         // Step 2: Deduct the balance from the user after a successful transaction
-        const userRef = db.collection("users").doc(uid);
+        const currentBalance = userData.Balance;
 
-        // Get the current balance of the user
-        const userDoc = await userRef.get();
-        const currentBalance = userDoc.data().Balance;
-
-        if (currentBalance >= amount) {
+        if (currentBalance >= amountWithIncrease) {
             // Deduct the balance
-            const newBalance = currentBalance - amount;
+            const newBalance = currentBalance - amountWithIncrease;
 
             // Update Firestore with the new balance
             await userRef.update({ Balance: newBalance });
@@ -272,6 +286,8 @@ app.post("/api/buyAirtime", async (req, res) => {
                 message: "Airtime purchase successful",
                 transaction: transactionData,
                 newBalance: newBalance,
+                original_amount: amount,
+                amount_with_increase: amountWithIncrease,
             });
         } else {
             return res.status(400).json({
@@ -286,6 +302,7 @@ app.post("/api/buyAirtime", async (req, res) => {
         });
     }
 });
+
 
 
 
