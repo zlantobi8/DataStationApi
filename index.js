@@ -101,7 +101,9 @@ app.post("/api/buyData", async (req, res) => {
         }
 
         // Increase price by 7.78%
-      let planAmountWithIncrease = Math.round(parseFloat(result.plan_amount) * (1 + 7.78 / 100));
+    // Increase the plan amount by 7.78% and round the result to the nearest integer
+let planAmountWithIncrease = Math.round(result.plan_amount * (1 + 7.78 / 100));
+
 
 // Update transaction data
 const transactionData = {
