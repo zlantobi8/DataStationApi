@@ -140,8 +140,9 @@ const transactionData = {
             await adminRef.update({ Gain: newGain });
 
             // Update user balance
-            const newBalance = currentBalance - planAmountWithIncrease;
-            await userRef.update({ Balance: newBalance });
+   const newBalance = parseFloat((currentBalance - planAmountWithIncrease).toFixed(1));
+await userRef.update({ Balance: newBalance });
+
 
           // API Response (Flat JSON)
 return res.status(200).json({
@@ -244,10 +245,11 @@ app.post("/api/buyAirtime", async (req, res) => {
 
         if (currentBalance >= amount) {
             // Deduct the balance
-            const newBalance = currentBalance - amount;
+       const newBalance = parseFloat((currentBalance - amount).toFixed(1));
 
-            // Update Firestore with the new balance
-            await userRef.update({ Balance: newBalance });
+// Update Firestore with the new balance
+await userRef.update({ Balance: newBalance });
+
 
             return res.status(200).json({
                 message: "Airtime purchase successful",
