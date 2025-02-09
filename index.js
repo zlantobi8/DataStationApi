@@ -251,11 +251,23 @@ app.post("/api/buyAirtime", async (req, res) => {
 await userRef.update({ Balance: newBalance });
 
 
-            return res.status(200).json({
-                message: "Airtime purchase successful",
-                transaction: transactionData,
-                newBalance: newBalance,
-            });
+        return res.status(200).json({
+    api_response: result.api_response,
+    balance_after: newBalance.toString(),
+    balance_before: currentBalance.toString(),
+    create_date: result.create_date,
+    customer_ref: result.ident,
+    id: result.id,
+    ident: result.ident,
+    mobile_number: result.mobile_number,
+    network: result.network,
+    plan: result.plan,
+    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
+    plan_name: result.plan_name,
+    plan_network: result.plan_network,
+    Ported_number: result.Ported_number,
+    Status: result.Status,
+});
         } else {
             return res.status(400).json({
                 message: "Insufficient balance.",
