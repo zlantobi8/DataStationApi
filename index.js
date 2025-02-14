@@ -48,7 +48,6 @@ const authenticate = async (req, res, next) => {
     }
 };
 
-// **Apply Authentication Middleware to Protected Routes**
 app.get("/api/GetuserInfo", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
@@ -74,6 +73,27 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
                     }
                 }
             }
+
+            // Loop through each network and modify GIFTING plans
+            Object.keys(dataplans).forEach(network => {
+                if (dataplans[network]["GIFTING"]) {
+                    dataplans[network]["GIFTING"].forEach(plan => {
+                        // Clone the plan and modify its type
+                        let modifiedPlan = { ...plan, plan_type: "SME" };
+
+                        // Ensure SME exists
+                        if (!dataplans[network]["SME"]) {
+                            dataplans[network]["SME"] = [];
+                        }
+
+                        // Avoid duplicate entries
+                        const exists = dataplans[network]["SME"].some(p => p.dataplan_id === plan.dataplan_id);
+                        if (!exists) {
+                            dataplans[network]["SME"].push(modifiedPlan);
+                        }
+                    });
+                }
+            });
         }
 
         res.status(200).send(response.data);
