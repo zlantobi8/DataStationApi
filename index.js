@@ -31,32 +31,43 @@ admin.initializeApp({
 
 const db = admin.firestore();  // Firestore instance
 
+const authenticate = async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Unauthorized: No token provided" });
+    }
 
-app.get("/api/GetuserInfo", async (req, res) => {
+    const idToken = authHeader.split("Bearer ")[1];
+
+    try {
+        const decodedToken = await admin.auth().verifyIdToken(idToken);
+        req.user = decodedToken; // Attach user info to request
+        next();
+    } catch (error) {
+        return res.status(403).json({ message: "Unauthorized: Invalid token" });
+    }
+};
+
+// **Apply Authentication Middleware to Protected Routes**
+app.get("/api/GetuserInfo", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
-        "Authorization": `Token ${process.env.APIKEY}`,
+        Authorization: `Token ${process.env.APIKEY}`,
         "Content-Type": "application/json",
     };
 
     try {
         const response = await axios.get(url, { headers });
 
-        // Safely add an 11.67% markup to all plan amounts in Dataplans
         if (response.data && response.data.Dataplans) {
             const dataplans = response.data.Dataplans;
 
-            // Iterate through each network's plans
             for (const [networkKey, networkPlans] of Object.entries(dataplans)) {
                 for (const [planType, plans] of Object.entries(networkPlans)) {
                     if (Array.isArray(plans)) {
-                        plans.forEach(plan => {
+                        plans.forEach((plan) => {
                             if (plan.plan_amount) {
-                                // Apply the 11.67% markup
-                              let updatedAmount = parseFloat(plan.plan_amount) * (1 + 7.78 / 100);
-
-
-                                // Round up to the nearest whole number
+                                let updatedAmount = parseFloat(plan.plan_amount) * (1 + 7.78 / 100);
                                 plan.plan_amount = Math.ceil(updatedAmount).toFixed(2);
                             }
                         });
@@ -65,7 +76,6 @@ app.get("/api/GetuserInfo", async (req, res) => {
             }
         }
 
-        // Send the modified response back to the frontend
         res.status(200).send(response.data);
     } catch (e) {
         console.error("Error fetching data from external API:", e.message);
@@ -74,10 +84,10 @@ app.get("/api/GetuserInfo", async (req, res) => {
 });
 
 
-app.post("/api/buyData", async (req, res) => {
+app.post("/api/buyData", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/data/";
     const headers = {
-        "Authorization": `Token ${process.env.APIKEY}`,
+        Authorization: `Token ${process.env.APIKEY}`,
         "Content-Type": "application/json",
     };
 
@@ -89,7 +99,6 @@ app.post("/api/buyData", async (req, res) => {
         }
 
         const apiRequestData = { network, plan, mobile_number, Ported_number: true };
-
         console.log("Sending request to external API:", apiRequestData);
 
         const response = await axios.post(url, apiRequestData, { headers });
@@ -99,31 +108,24 @@ app.post("/api/buyData", async (req, res) => {
             return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
         }
 
-        // Increase price by 7.78%
-      let planAmountWithIncrease = Math.round(parseFloat(result.plan_amount) * (1 + 7.78 / 100));
+        let planAmountWithIncrease = Math.round(parseFloat(result.plan_amount) * (1 + 7.78 / 100));
 
-// Update transaction data
-const transactionData = {
-    id: result.id,
-    ident: result.ident,
-    mobile_number: result.mobile_number,
-    plan: result.plan,
-    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
-    plan_network: result.plan_network,
-    plan_name: result.plan_name,
-    api_response: result.api_response,
-    create_date: result.create_date,
-    Ported_number: result.Ported_number,
-    Status: result.Status,
-};
+        const transactionData = {
+            id: result.id,
+            ident: result.ident,
+            mobile_number: result.mobile_number,
+            plan: result.plan,
+            plan_amount: planAmountWithIncrease.toString(),
+            plan_network: result.plan_network,
+            plan_name: result.plan_name,
+            api_response: result.api_response,
+            create_date: result.create_date,
+            Ported_number: result.Ported_number,
+            Status: result.Status,
+        };
 
+        await db.collection("users").doc(uid).collection("airtime_transaction").doc(result.id.toString()).set(transactionData);
 
-        await db.collection("users").doc(uid)
-            .collection("airtime_transaction")
-            .doc(result.id.toString())
-            .set(transactionData);
-
-        // Deduct balance from the user
         const userRef = db.collection("users").doc(uid);
         const userDoc = await userRef.get();
         const currentBalance = userDoc.data()?.Balance;
@@ -131,36 +133,32 @@ const transactionData = {
         if (currentBalance >= planAmountWithIncrease) {
             const gain = (parseFloat(result.plan_amount) * 7.78) / 100;
 
-            // Update Admin gain
             const adminRef = db.collection("Admin").doc("Admin404");
             const adminDoc = await adminRef.get();
             const newGain = (adminDoc.data()?.Gain || 0) + gain;
 
             await adminRef.update({ Gain: newGain });
 
-            // Update user balance
-   const newBalance = parseFloat((currentBalance - planAmountWithIncrease).toFixed(1));
-await userRef.update({ Balance: newBalance });
+            const newBalance = parseFloat((currentBalance - planAmountWithIncrease).toFixed(1));
+            await userRef.update({ Balance: newBalance });
 
-
-          // API Response (Flat JSON)
-return res.status(200).json({
-    api_response: result.api_response,
-    balance_after: newBalance.toString(),
-    balance_before: currentBalance.toString(),
-    create_date: result.create_date,
-    customer_ref: result.ident,
-    id: result.id,
-    ident: result.ident,
-    mobile_number: result.mobile_number,
-    network: result.network,
-    plan: result.plan,
-    plan_amount: planAmountWithIncrease.toString(),  // Now rounded
-    plan_name: result.plan_name,
-    plan_network: result.plan_network,
-    Ported_number: result.Ported_number,
-    Status: result.Status,
-});
+            return res.status(200).json({
+                api_response: result.api_response,
+                balance_after: newBalance.toString(),
+                balance_before: currentBalance.toString(),
+                create_date: result.create_date,
+                customer_ref: result.ident,
+                id: result.id,
+                ident: result.ident,
+                mobile_number: result.mobile_number,
+                network: result.network,
+                plan: result.plan,
+                plan_amount: planAmountWithIncrease.toString(),
+                plan_name: result.plan_name,
+                plan_network: result.plan_network,
+                Ported_number: result.Ported_number,
+                Status: result.Status,
+            });
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
         }
@@ -168,14 +166,13 @@ return res.status(200).json({
         console.error("Error:", e.response ? e.response.data : e.message);
         res.status(e.response?.status || 500).json({ error: e.response?.data || "An error occurred." });
     }
-}); 
+});
 
 
 
 
 
-
-app.post("/api/buyAirtime", async (req, res) => {
+app.post("/api/buyAirtime",authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/topup/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`,
