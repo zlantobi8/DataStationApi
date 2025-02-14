@@ -48,7 +48,6 @@ const authenticate = async (req, res, next) => {
     }
 };
 
-// **Apply Authentication Middleware to Protected Routes**
 app.get("/api/GetuserInfo", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
@@ -74,6 +73,23 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
                     }
                 }
             }
+
+            // Merge all GIFTING plans into SME for each network
+            Object.keys(dataplans).forEach(network => {
+                if (dataplans[network]["GIFTING"]) {
+                    if (!dataplans[network]["SME"]) {
+                        dataplans[network]["SME"] = [];
+                    }
+
+                    // Add all GIFTING plans to SME (avoiding duplicates)
+                    dataplans[network]["GIFTING"].forEach(plan => {
+                        const exists = dataplans[network]["SME"].some(p => p.dataplan_id === plan.dataplan_id);
+                        if (!exists) {
+                            dataplans[network]["SME"].push(plan);
+                        }
+                    });
+                }
+            });
         }
 
         res.status(200).send(response.data);
@@ -81,7 +97,7 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
         console.error("Error fetching data from external API:", e.message);
         res.status(500).send({ error: "Failed to fetch data from the external API." });
     }
-});  
+});
 
 
 app.post("/api/buyData", authenticate, async (req, res) => {
