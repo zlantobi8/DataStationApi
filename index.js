@@ -48,7 +48,6 @@ const authenticate = async (req, res, next) => {
     }
 };
 
-// **Apply Authentication Middleware to Protected Routes**
 app.get("/api/GetuserInfo", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/user/";
     const headers = {
@@ -72,6 +71,22 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
                             }
                         });
                     }
+                }
+            }
+
+            // Find the specific gifting plan
+            const giftingPlan = dataplans["MTN"]?.["GIFTING"]?.find(plan => plan.dataplan_id === "216");
+
+            if (giftingPlan) {
+                // Ensure SME exists before pushing
+                if (!dataplans["MTN"]["SME"]) {
+                    dataplans["MTN"]["SME"] = [];
+                }
+
+                // Add gifting plan to SME if not already included
+                const exists = dataplans["MTN"]["SME"].some(plan => plan.dataplan_id === "216");
+                if (!exists) {
+                    dataplans["MTN"]["SME"].push(giftingPlan);
                 }
             }
         }
