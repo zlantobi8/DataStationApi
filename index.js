@@ -56,260 +56,31 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
         "Content-Type": "application/json",
     };
 
-    const response = {
-        "dataplans": {
-            "mTNPLAN": {
-                "aLL": [
-                    {
-                        "id": 1,
-                        "dataplan_id": "1",
-                        "network": 1,
-                        "plan_type": "SME",
-                        "plan_network": "MTN",
-                        "month_validate": "30 Days",
-                        "plan": "500MB",
-                        "plan_amount": "137.50"
-                    },
-                    {
-                        "id": 2,
-                        "dataplan_id": "2",
-                        "network": 1,
-                        "plan_type": "SME",
-                        "plan_network": "MTN",
-                        "month_validate": "30 Days",
-                        "plan": "1GB",
-                        "plan_amount": "275.00"
-                    },
-                    {
-                        "id": 3,
-                        "dataplan_id": "3",
-                        "network": 1,
-                        "plan_type": "SME",
-                        "plan_network": "MTN",
-                        "month_validate": "30 Days",
-                        "plan": "2GB",
-                        "plan_amount": "550.00"
-                    },
-                    {
-                        "id": 4,
-                        "dataplan_id": "4",
-                        "network": 1,
-                        "plan_type": "SME",
-                        "plan_network": "MTN",
-                        "month_validate": "30 Days",
-                        "plan": "3GB",
-                        "plan_amount": "825.00"
-                    },
-                    {
-                        "id": 5,
-                        "dataplan_id": "5",
-                        "network": 1,
-                        "plan_type": "SME",
-                        "plan_network": "MTN",
-                        "month_validate": "30 Days",
-                        "plan": "5GB",
-                        "plan_amount": "1375.00"
-                    },
-                    {
-                        "id": 6,
-                        "dataplan_id": "6",
-                        "network": 1,
-                        "plan_type": "SME",
-                        "plan_network": "MTN",
-                        "month_validate": "30 Days",
-                        "plan": "10GB",
-                        "plan_amount": "2600.00"
+    try {
+        const response = await axios.get(url, { headers });
+
+        if (response.data && response.data.Dataplans) {
+            const dataplans = response.data.Dataplans;
+
+            for (const [networkKey, networkPlans] of Object.entries(dataplans)) {
+                for (const [planType, plans] of Object.entries(networkPlans)) {
+                    if (Array.isArray(plans)) {
+                        plans.forEach((plan) => {
+                            if (plan.plan_amount) {
+                                let updatedAmount = parseFloat(plan.plan_amount) * (1 + 7.78 / 100);
+                                plan.plan_amount = Math.ceil(updatedAmount).toFixed(2);
+                            }
+                        });
                     }
-                ]
-            },
-            "aIRTELPLAN": {
-                "aLL": [
-                    {
-                        "id": 28,
-                        "dataplan_id": "28",
-                        "network": 2,
-                        "plan_type": "Corporate",
-                        "plan_network": "AIRTEL",
-                        "month_validate": "30 Days",
-                        "plan": "500MB",
-                        "plan_amount": "283.00"
-                    },
-                    {
-                        "id": 29,
-                        "dataplan_id": "29",
-                        "network": 2,
-                        "plan_type": "Corporate",
-                        "plan_network": "AIRTEL",
-                        "month_validate": "30 Days",
-                        "plan": "1GB",
-                        "plan_amount": "566.00"
-                    },
-                    {
-                        "id": 30,
-                        "dataplan_id": "30",
-                        "network": 2,
-                        "plan_type": "Corporate",
-                        "plan_network": "AIRTEL",
-                        "month_validate": "30 Days",
-                        "plan": "2GB",
-                        "plan_amount": "1132.00"
-                    },
-                    {
-                        "id": 31,
-                        "dataplan_id": "31",
-                        "network": 2,
-                        "plan_type": "Corporate",
-                        "plan_network": "AIRTEL",
-                        "month_validate": "7 Days",
-                        "plan": "100MB",
-                        "plan_amount": "142.00"
-                    },
-                    {
-                        "id": 32,
-                        "dataplan_id": "32",
-                        "network": 2,
-                        "plan_type": "Corporate",
-                        "plan_network": "AIRTEL",
-                        "month_validate": "30 Days",
-                        "plan": "5GB",
-                        "plan_amount": "2830.00"
-                    },
-                    {
-                        "id": 33,
-                        "dataplan_id": "33",
-                        "network": 2,
-                        "plan_type": "Corporate",
-                        "plan_network": "AIRTEL",
-                        "month_validate": "30 Days",
-                        "plan": "10GB",
-                        "plan_amount": "5560.00"
-                    }
-                ]
-            },
-            "gLOPLAN": {
-                "aLL": [
-                    {
-                        "id": 22,
-                        "dataplan_id": "22",
-                        "network": 3,
-                        "plan_type": "Corporate",
-                        "plan_network": "GLO",
-                        "month_validate": "30 Days",
-                        "plan": "500MB",
-                        "plan_amount": "143.00"
-                    },
-                    {
-                        "id": 23,
-                        "dataplan_id": "23",
-                        "network": 3,
-                        "plan_type": "Corporate",
-                        "plan_network": "GLO",
-                        "month_validate": "30 Days",
-                        "plan": "1GB",
-                        "plan_amount": "286.00"
-                    },
-                    {
-                        "id": 24,
-                        "dataplan_id": "24",
-                        "network": 3,
-                        "plan_type": "Corporate",
-                        "plan_network": "GLO",
-                        "month_validate": "30 Days",
-                        "plan": "2GB",
-                        "plan_amount": "572.00"
-                    },
-                    {
-                        "id": 25,
-                        "dataplan_id": "25",
-                        "network": 3,
-                        "plan_type": "Corporate",
-                        "plan_network": "GLO",
-                        "month_validate": "30 Days",
-                        "plan": "3GB",
-                        "plan_amount": "858.00"
-                    },
-                    {
-                        "id": 26,
-                        "dataplan_id": "26",
-                        "network": 3,
-                        "plan_type": "Corporate",
-                        "plan_network": "GLO",
-                        "month_validate": "30 Days",
-                        "plan": "5GB",
-                        "plan_amount": "1430.00"
-                    },
-                    {
-                        "id": 27,
-                        "dataplan_id": "27",
-                        "network": 3,
-                        "plan_type": "Corporate",
-                        "plan_network": "GLO",
-                        "month_validate": "30 Days",
-                        "plan": "10GB",
-                        "plan_amount": "2760.00"
-                    }
-                ]
-            },
-            "mOBILEPLAN": {
-                "aLL": [
-                    {
-                        "id": 34,
-                        "dataplan_id": "34",
-                        "network": 4,
-                        "plan_type": "Corporate",
-                        "plan_network": "9MOBILE",
-                        "month_validate": "30 Days",
-                        "plan": "500MB",
-                        "plan_amount": "80.00"
-                    },
-                    {
-                        "id": 35,
-                        "dataplan_id": "35",
-                        "network": 4,
-                        "plan_type": "Corporate",
-                        "plan_network": "9MOBILE",
-                        "month_validate": "30 Days",
-                        "plan": "1GB",
-                        "plan_amount": "149.00"
-                    },
-                    {
-                        "id": 36,
-                        "dataplan_id": "36",
-                        "network": 4,
-                        "plan_type": "Corporate",
-                        "plan_network": "9MOBILE",
-                        "month_validate": "30 Days",
-                        "plan": "2GB",
-                        "plan_amount": "300.00"
-                    },
-                    {
-                        "id": 37,
-                        "dataplan_id": "37",
-                        "network": 4,
-                        "plan_type": "Corporate",
-                        "plan_network": "9MOBILE",
-                        "month_validate": "30 Days",
-                        "plan": "3GB",
-                        "plan_amount": "450.00"
-                    },
-                    {
-                        "id": 39,
-                        "dataplan_id": "39",
-                        "network": 4,
-                        "plan_type": "Corporate",
-                        "plan_network": "9MOBILE",
-                        "month_validate": "30 Days",
-                        "plan": "10GB",
-                        "plan_amount": "1400.00"
-                    }
-                ]
+                }
             }
         }
-    };
-    
 
-    res.status(200).send(response)
-
+        res.status(200).send(response.data);
+    } catch (e) {
+        console.error("Error fetching data from external API:", e.message);
+        res.status(500).send({ error: "Failed to fetch data from the external API." });
+    }
 });
 
 
@@ -401,7 +172,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
 
-app.post("/api/buyAirtime", authenticate, async (req, res) => {
+app.post("/api/buyAirtime",authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/topup/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`,
@@ -473,15 +244,15 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
 
         if (currentBalance >= amount) {
             // Deduct the balance
-            const newBalance = parseFloat((currentBalance - amount).toFixed(1));
+       const newBalance = parseFloat((currentBalance - amount).toFixed(1));
 
-            // Update Firestore with the new balance
-            await userRef.update({ Balance: newBalance });
+// Update Firestore with the new balance
+await userRef.update({ Balance: newBalance });
 
 
-            return res.status(200).json({
-                Status: result.Status
-            });
+ return res.status(200).json({
+    Status: result.Status
+});
 
         } else {
             return res.status(400).json({
