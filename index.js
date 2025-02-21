@@ -313,7 +313,6 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
 });
 
 
-
 app.post("/api/buyData", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/data/";
     const headers = {
@@ -402,7 +401,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
 
-app.post("/api/buyAirtime",authenticate, async (req, res) => {
+app.post("/api/buyAirtime", authenticate, async (req, res) => {
     const url = "https://datastationapi.com/api/topup/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`,
@@ -474,15 +473,15 @@ app.post("/api/buyAirtime",authenticate, async (req, res) => {
 
         if (currentBalance >= amount) {
             // Deduct the balance
-       const newBalance = parseFloat((currentBalance - amount).toFixed(1));
+            const newBalance = parseFloat((currentBalance - amount).toFixed(1));
 
-// Update Firestore with the new balance
-await userRef.update({ Balance: newBalance });
+            // Update Firestore with the new balance
+            await userRef.update({ Balance: newBalance });
 
 
- return res.status(200).json({
-    Status: result.Status
-});
+            return res.status(200).json({
+                Status: result.Status
+            });
 
         } else {
             return res.status(400).json({
