@@ -1134,7 +1134,7 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
 });
 
 
-app.post("/api/buyData", authenticate, async (req, res) => {
+app.post("/api/buyData1", authenticate, async (req, res) => {
     const url = "https://vtunaija.com.ng/api/data/";
     const headers = {
         Authorization: `Token ${process.env.APIKEY}`,
@@ -1190,7 +1190,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
             plan_amount: modifiedAMount.toString(),
             plan_network: planNetwork,
             plan_name: planName.toString(),
-            api_response: result.api_response,
+            api_response: `Dear customer you have succesfully shared  ${planName.toString()} to ${mobile_number}`,
             create_date: create_date,
             Ported_number: true,
             Status: result.Status,
@@ -1217,7 +1217,6 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
             return res.status(200).json({
-                api_response: result.api_response,
                 balance_after: newBalance.toString(),
                 balance_before: currentBalance.toString(),
                 customer_ref: result.ident,
@@ -1228,7 +1227,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 plan_amount: modifiedAMount.toString(),
                 plan_network: planNetwork,
                 plan_name: planName.toString(),
-                api_response: result.api_response,
+                api_response: transactionData.api_response,
                 create_date: create_date,
                 Ported_number: true,
                 Status: result.Status,
@@ -1243,6 +1242,61 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         res.status(e.response?.status || 500).json({ error: e.response?.data || "An error occurred." });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+app.post("/api/buyData", authenticate, async (req, res) => {
+    const { mobile_number, network, plan } = req.body;
+
+    if (!mobile_number || !network || !plan) {
+        return res.status(400).json({ message: "Missing required fields." });
+    }
+
+    // Dummy response matching your format
+    const dummyResponse = {
+        id: 65841860,
+        ident: "Data38d94ac36-a96",
+        network,
+        mobile_number,
+        plan,
+        Status: "successful",
+        api_response: `Dear Customer, You have gifted 500MB Data to ${mobile_number}, please dial *460*260# to check your balance. Thank you.. Your new balance (GB) is `,
+        plan_network: "MTN",
+        plan_name: "500.0MB",
+        plan_amount: "136.0",
+        create_date: new Date().toISOString(),
+        Ported_number: true,
+    };
+
+    return res.status(200).json(dummyResponse);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
