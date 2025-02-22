@@ -1134,7 +1134,7 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
 });
 
 
-app.post("/api/buyData",authenticate, async (req, res) => {
+app.post("/api/buyData", authenticate, async (req, res) => {
     const url = "https://vtunaija.com.ng/api/data/";
     const headers = {
         Authorization: `Token ${process.env.APIKEY}`,
@@ -1150,10 +1150,10 @@ app.post("/api/buyData",authenticate, async (req, res) => {
         function generateRandomId() {
             return Math.floor(100000 + Math.random() * 900000); // 6-digit number
         }
-        
+
         const randomId = generateRandomId();
         console.log(randomId); // Example: 583241
-        
+
 
 
         const apiRequestData = { network: network, plan: plan, mobile_number: mobile_number, Ported_number: true };
@@ -1178,7 +1178,7 @@ app.post("/api/buyData",authenticate, async (req, res) => {
         const modifiedAMount = selectedPlan ? selectedPlan.plan_amount : null;
         const modifiedplan = selectedPlan ? selectedPlan.id : null;
         const planNetwork = selectedPlan ? selectedPlan.plan_network : null;
-
+        const planName = selectedPlan ? selectedPlan.plan : null;
         const now = new Date();
         const create_date = `${now.toISOString().slice(0, -1)}000`; // Appends extra zeros for microseconds
 
@@ -1189,7 +1189,7 @@ app.post("/api/buyData",authenticate, async (req, res) => {
             plan: modifiedplan,
             plan_amount: modifiedAMount.toString(),
             plan_network: planNetwork,
-            plan_name: modifiedplan,
+            plan_name: planName.toString(),
             api_response: result.api_response,
             create_date: create_date,
             Ported_number: true,
@@ -1227,7 +1227,7 @@ app.post("/api/buyData",authenticate, async (req, res) => {
                 plan: modifiedplan,
                 plan_amount: modifiedAMount.toString(),
                 plan_network: planNetwork,
-                plan_name: modifiedplan,
+                plan_name: planName.toString(),
                 api_response: result.api_response,
                 create_date: create_date,
                 Ported_number: true,
