@@ -1137,7 +1137,7 @@ app.get("/api/GetuserInfo", authenticate, async (req, res) => {
 app.post("/api/buyData",authenticate, async (req, res) => {
     const url = "https://vtunaija.com.ng/api/data/";
     const headers = {
-        Authorization: `Token 9e5201eab031ad4a31258498504ca44917b97fbd`,
+        Authorization: `Token ${process.env.APIKEY}`,
         "Content-Type": "application/json",
     };
 
