@@ -4,7 +4,7 @@ const axios = require("axios");
 const app = express();
 app.use(bodyParser.json());
 require('dotenv').config();
-const admin = require("firebase-admin");
+const admin = require("firebase-admin")
 
 
 
