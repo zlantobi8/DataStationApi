@@ -1285,45 +1285,28 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
     };
 
     try {
-        // Extract and validate request data
+        // Extract data from the request body
         const { uid, mobile_number, amount, network } = req.body;
 
+        // Check for missing required fields
         if (!uid || !mobile_number || !amount || !network) {
-            return res.status(400).json({
+            return res.status(400).send({
                 message: "Missing required fields. Ensure uid, mobile_number, amount, and network are provided.",
             });
         }
 
-        const deductedAmount = parseFloat(amount);
-        if (isNaN(deductedAmount) || deductedAmount <= 0) {
-            return res.status(400).json({ message: "Invalid amount value." });
-        }
-
-        // Get user balance before making the transaction
-        const userRef = db.collection("users").doc(uid);
-        const userDoc = await userRef.get();
-
-        if (!userDoc.exists) {
-            return res.status(404).json({ message: "User not found." });
-        }
-
-        const currentBalance = parseFloat(userDoc.data().Balance);
-        if (currentBalance < deductedAmount) {
-            return res.status(400).json({ message: "Insufficient balance." });
-        }
-
-        // Prepare data for the external API request
+        // Construct the data to send to the external API
         const apiRequestData = {
             network,
-            amount: deductedAmount,
+            amount,
             mobile_number,
             Ported_number: true,
             airtime_type: "VTU",
         };
 
-        console.log("Sending data to VTU API:", apiRequestData);
+        console.log("Sending data to the external API:", apiRequestData);
 
-        // Send request to external API
+        // Send POST request to the external API
         const response = await axios.post(url, apiRequestData, { headers });
         const result = response.data;
 
@@ -1333,51 +1316,67 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
                 error: result.api_response || "Unknown error",
             });
         }
-
-        // Generate unique transaction ID
         function generateRandomId() {
-            return Math.floor(100000 + Math.random() * 900000);
+            return Math.floor(100000 + Math.random() * 900000); // 6-digit number
         }
-        const transactionId = generateRandomId();
 
-        // Generate correct ISO timestamp without timezone shifts
+        const randomId = generateRandomId();
+        console.log(randomId); // Example: 583241
         const now = new Date();
         const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
         const create_date = `${localDate.toISOString().slice(0, -1)}000`;
+        // Format the transaction data to match the frontend's structure
 
-        // Format transaction data
         const transactionData = {
-            id: transactionId,
-            ident: result.ident || transactionId.toString(),
+            id: generateRandomId(),
+            ident: result.ident,
             mobile_number: result.mobile_number.toString(),
-            amount: deductedAmount.toString(),
-            plan_amount: deductedAmount.toString(),
+            amount: result.plan_amount.toString(),
+            plan_amount: result.plan_amount.toString(),
             plan_network: network == 1 ? "Mtn" : network == 2 ? "Glo" : network == 3 ? "9Mobile" : "Airtel",
             Status: "successful",
-            api_response: `You have successfully sent airtime of ${deductedAmount} to ${mobile_number}`,
-            create_date,
+            api_response: `You have successfully sent Airtime of ${result.plan_amount.toString()} to ${mobile_number}`,
+            create_date: create_date,
             Ported_number: true,
             airtime_type: result.airtime_type || "VTU",
             plan: result.plan || "",
             plan_name: result.plan_name || "",
         };
 
-        // Store the transaction in Firestore
-        await db.collection("users").doc(uid)
+        // Store transaction in Firestore under the user's UID
+        await db.collection("users").doc(uid)  // 🔹 Store under uid
             .collection("airtime_transaction")
-            .doc(transactionId.toString())
+            .doc(transactionData.id.toString())
             .set(transactionData);
 
-        // Deduct balance after successful transaction
-        const newBalance = parseFloat((currentBalance - deductedAmount).toFixed(2));
-        await userRef.update({ Balance: newBalance });
+        // Step 2: Deduct the balance from the user after a successful transaction
+        const userRef = db.collection("users").doc(uid);
 
-        // Return success response
-        return res.status(200).json({ Status: "successful" });
+        // Get the current balance of the user
+        const userDoc = await userRef.get();
+        const currentBalance = userDoc.data().Balance;
+
+        if (currentBalance >= amount) {
+            // Deduct the balance
+            const newBalance = parseFloat((currentBalance - amount).toFixed(1));
+
+            // Update Firestore with the new balance
+            await userRef.update({ Balance: newBalance });
+
+
+            return res.status(200).json({
+                Status: "successful"
+            });
+
+        } else {
+            return res.status(400).json({
+                message: "Insufficient balance.",
+            });
+        }
 
     } catch (error) {
-        console.error("Error processing transaction:", error.response?.data || error.message);
-        res.status(error.response?.status || 500).json({
+        console.error("Error:", error.response?.data || error.message);
+        res.status(error.response?.status || 500).send({
             error: error.response?.data || "An error occurred while processing your request.",
         });
     }
