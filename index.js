@@ -1162,9 +1162,9 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         const response = await axios.post(url, apiRequestData, { headers });
         const result = response.data;
 
-        if (!result || result.Status !== "successful") {
-            return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
-        }
+        // if (!result || result.Status !== "successful") {
+        //     return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
+        // }
 
 
         const plans = {
