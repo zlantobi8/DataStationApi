@@ -1180,7 +1180,8 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         const planNetwork = selectedPlan ? selectedPlan.plan_network : null;
         const planName = selectedPlan ? selectedPlan.plan : null;
         const now = new Date();
-        const create_date = `${now.toISOString().slice(0, -1)}000`; // Appends extra zeros for microseconds
+        const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+        const create_date = `${localDate.toISOString().slice(0, -1)}000`;
 
         const transactionData = {
             id: generateRandomId(),
@@ -1233,7 +1234,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 Ported_number: transactionData.Ported_number, // Must match @SerialName
                 Status: "successful", // Must match @SerialName
             });
-            
+
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
         }
@@ -1277,7 +1278,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
 app.post("/api/buyAirtime", authenticate, async (req, res) => {
-    const url = "https://datastationapi.com/api/topup/";
+    const url = "https://vtunaija.com.ng/api/topup/";
     const headers = {
         "Authorization": `Token ${process.env.APIKEY}`,
         "Content-Type": "application/json",
@@ -1315,19 +1316,31 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
                 error: result.api_response || "Unknown error",
             });
         }
+        function generateRandomId() {
+            return Math.floor(100000 + Math.random() * 900000); // 6-digit number
+        }
 
+        const randomId = generateRandomId();
+        console.log(randomId); // Example: 583241
+        const now = new Date();
+        const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+        const create_date = `${localDate.toISOString().slice(0, -1)}000`;
         // Format the transaction data to match the frontend's structure
+
         const transactionData = {
-            id: result.id,
+            id: generateRandomId(),
             ident: result.ident,
-            mobile_number: result.mobile_number,
-            amount: result.amount,
-            plan_amount: result.plan_amount,
-            plan_network: result.plan_network,
-            Status: result.Status,
-            api_response: result.api_response,
-            create_date: result.create_date,
-            Ported_number: result.Ported_number,
+            mobile_number: result.mobile_number.toString(),
+            amount: result.plan_amount.toString(),
+            plan_amount: result.plan_amount.toString(),
+            plan_network: network == 1 ? "Mtn" : network == 2 ? "Glo" : network == 3 ? " 9Mobile" : " Airtel",
+
+            Status: "successful",
+            api_response:`You have successfully sent Airtime of ${result.plan_amount.toString()} to ${mobile_number}`,
+            create_date: create_date,
+            Ported_number: true,
+
+
             airtime_type: result.airtime_type || "VTU",
             plan: result.plan || "",
             plan_name: result.plan_name || "",
