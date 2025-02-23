@@ -1160,7 +1160,10 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         console.log("Sending request to external API:", apiRequestData);
 
         const response = await axios.post(url, apiRequestData, { headers });
-        const result = response.data;
+        const result = {
+            ident: "2324dwd"
+        }
+        // const result = response.data;
 
         if (!result || result.Status !== "successful") {
             return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
@@ -1221,7 +1224,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 balance_after: newBalance.toString(),
                 balance_before: currentBalance.toString(),
                 create_date: transactionData.create_date,
-                customer_ref:transactionData.ident,
+                customer_ref: transactionData.ident,
                 id: transactionData.id,
                 ident: transactionData.ident,
                 mobile_number: transactionData.mobile_number,
