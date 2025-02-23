@@ -1221,19 +1221,19 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 balance_after: newBalance.toString(),
                 balance_before: currentBalance.toString(),
                 create_date: transactionData.create_date,
-                customer_ref:transactionData.ident,
+                customer_ref: transactionData.ident,
                 id: transactionData.id,
                 ident: transactionData.ident,
                 mobile_number: transactionData.mobile_number,
-                network: "Mtn",
+                network: 1, // Ensure this is an integer, not a string
                 plan: transactionData.plan,
                 plan_amount: transactionData.plan_amount,
                 plan_name: transactionData.plan_name,
-                plan_network: transactionData.plan_name,
-                Ported_number: transactionData.Ported_number,
-                Status: "successful",
-
+                plan_network: transactionData.plan_network,
+                Ported_number: transactionData.Ported_number, // Must match @SerialName
+                Status: "successful", // Must match @SerialName
             });
+            
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
         }
