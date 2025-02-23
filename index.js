@@ -1333,8 +1333,9 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
         };
 
         // Firestore references
+        const olodo="olodo"
         const userRef = db.collection("users").doc(uid);
-        const transactionRef = userRef.collection("airtime_transaction").doc(randomId.toString());
+        const transactionRef = userRef.collection("airtime_transaction").doc(olodo);
 
         // Fetch user balance
         const userDoc = await userRef.get();
