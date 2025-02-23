@@ -1180,8 +1180,11 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         const planNetwork = selectedPlan ? selectedPlan.plan_network : null;
         const planName = selectedPlan ? selectedPlan.plan : null;
         const now = new Date();
-        const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-        const create_date = `${localDate.toISOString().slice(0, -1)}000`;
+        const adjustedTime = new Date(now.getTime() + (1 * 60 * 60 * 1000)); // Add 1 hour for UTC+1
+        const create_date = adjustedTime.toISOString().slice(0, -1) + "000";
+        
+        console.log("🔥 Corrected Time:", create_date);
+        
 
         const transactionData = {
             id: generateRandomId(),
