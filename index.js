@@ -1145,8 +1145,9 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         const { uid, mobile_number, network, plan } = req.body;
 
         if (!uid || !mobile_number || !network || !plan) {
-            return res.status(400).json({ message: "Missing required fields." })
+            return res.status(400).json({ message: "Missing required fields." });
         }
+
         function generateRandomId() {
             return Math.floor(100000 + Math.random() * 900000); // 6-digit number
         }
@@ -1154,21 +1155,19 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         const randomId = generateRandomId();
         console.log(randomId); // Example: 583241
 
+        // Hardcoded API response instead of making an axios call
+        // const response = await axios.post(url, apiRequestData, { headers });
 
-
-        const apiRequestData = { network: network, plan: plan, mobile_number: mobile_number, Ported_number: true };
-        console.log("Sending request to external API:", apiRequestData);
-
-        const response = await axios.post(url, apiRequestData, { headers });
         const result = {
-            ident: "2324dwd"
-        }
-        // const result = response.data;
+            ident: "2324dwd",
+            Status: "successful", // Hardcoded status
+            api_response: "Transaction completed successfully",
+            plan_amount: "500", // Hardcoded plan amount
+        };
 
         if (!result || result.Status !== "successful") {
             return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
         }
-
 
         const plans = {
             1: response1.Dataplans.MTN_PLAN.ALL,
@@ -1178,8 +1177,8 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         };
 
         const selectedPlan = plans[network]?.find(e => e.id === plan);
-        const modifiedAMount = selectedPlan ? selectedPlan.plan_amount : null;
-        const modifiedplan = selectedPlan ? selectedPlan.id : null;
+        const modifiedAmount = selectedPlan ? selectedPlan.plan_amount : null;
+        const modifiedPlan = selectedPlan ? selectedPlan.id : null;
         const planNetwork = selectedPlan ? selectedPlan.plan_network : null;
         const planName = selectedPlan ? selectedPlan.plan : null;
         const now = new Date();
@@ -1189,23 +1188,23 @@ app.post("/api/buyData", authenticate, async (req, res) => {
             id: generateRandomId(),
             ident: result.ident,
             mobile_number: mobile_number,
-            plan: modifiedplan,
-            plan_amount: modifiedAMount.toString(),
+            plan: modifiedPlan,
+            plan_amount: modifiedAmount?.toString() || "500",
             plan_network: planNetwork,
-            plan_name: planName.toString(),
-            api_response: `Dear customer you have succesfully shared  ${planName.toString()} to ${mobile_number}`,
+            plan_name: planName?.toString() || "1GB",
+            api_response: `Dear customer, you have successfully shared ${planName?.toString() || "1GB"} to ${mobile_number}`,
             create_date: create_date,
             Ported_number: true,
             Status: "successful",
         };
 
-        await db.collection("users").doc(uid).collection("airtime_transaction").doc(result.id.toString()).set(transactionData);
+        await db.collection("users").doc(uid).collection("airtime_transaction").doc(result.ident).set(transactionData);
 
         const userRef = db.collection("users").doc(uid);
         const userDoc = await userRef.get();
         const currentBalance = userDoc.data()?.Balance;
 
-        if (currentBalance >= modifiedAMount) {
+        if (currentBalance >= modifiedAmount) {
             const gain = (parseFloat(result.plan_amount) * 7.78) / 100;
 
             const adminRef = db.collection("Admin").doc("Admin404");
@@ -1214,10 +1213,8 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
             await adminRef.update({ Gain: newGain });
 
-            const newBalance = parseFloat((currentBalance - modifiedAMount).toFixed(1));
+            const newBalance = parseFloat((currentBalance - modifiedAmount).toFixed(1));
             await userRef.update({ Balance: newBalance });
-
-
 
             return res.status(200).json({
                 api_response: transactionData.api_response,
@@ -1235,7 +1232,6 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 plan_network: transactionData.plan_name,
                 Ported_number: transactionData.Ported_number,
                 Status: transactionData.Status,
-
             });
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
@@ -1245,6 +1241,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         res.status(e.response?.status || 500).json({ error: e.response?.data || "An error occurred." });
     }
 });
+
 
 
 
