@@ -1231,7 +1231,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 plan_name: transactionData.plan_name,
                 plan_network: transactionData.plan_name,
                 Ported_number: transactionData.Ported_number,
-                Status: transactionData.Status,
+                Status: "successful",
 
             });
         } else {
