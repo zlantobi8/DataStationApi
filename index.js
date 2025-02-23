@@ -1276,7 +1276,6 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
 
-
 app.post("/api/buyAirtime", authenticate, async (req, res) => {
     const url = "https://vtunaija.com.ng/api/topup/";
     const headers = {
@@ -1285,57 +1284,47 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
     };
 
     try {
-        // Extract data from the request body
+        // Extract and validate request data
         const { uid, mobile_number, amount, network } = req.body;
-
         if (!uid || !mobile_number || !amount || !network) {
-            return res.status(400).json({
-                message: "Missing required fields. Ensure uid, mobile_number, amount, and network are provided.",
-            });
+            return res.status(400).json({ message: "Missing required fields." });
         }
 
-        // Construct the data to send to the external API
-        const apiRequestData = {
-            network,
-            amount,
-            mobile_number,
-            Ported_number: true,
-            airtime_type: "VTU",
-        };
+        // Ensure amount is a number
+        const amountValue = Number(amount);
+        if (isNaN(amountValue) || amountValue <= 0) {
+            return res.status(400).json({ message: "Invalid amount." });
+        }
 
-        console.log("Sending data to VTU API:", apiRequestData);
-
-        // Send POST request to the external API
+        // Send request to VTU API
+        const apiRequestData = { network, amount: amountValue, mobile_number, Ported_number: true, airtime_type: "VTU" };
+        console.log("Sending data to the external API:", apiRequestData);
         const response = await axios.post(url, apiRequestData, { headers });
+
+        // Validate API response
         const result = response.data;
-
         if (!result || result.Status !== "successful") {
-            return res.status(400).json({
-                message: "Transaction failed.",
-                error: result.api_response || "Unknown error",
-            });
+            return res.status(400).json({ message: "Transaction failed.", error: result.api_response || "Unknown error" });
         }
 
-        // Generate a random transaction ID
+        // Generate transaction ID and timestamp
         function generateRandomId() {
-            return Math.floor(100000 + Math.random() * 900000);
+            return Math.floor(100000 + Math.random() * 900000); // 6-digit number
         }
-
-        const transactionId = generateRandomId();
+        const randomId = generateRandomId();
         const now = new Date();
-        const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-        const create_date = `${localDate.toISOString().slice(0, -1)}000`;
+        const create_date = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, -1) + "000";
 
-        // Prepare transaction data
+        // Construct transaction object
         const transactionData = {
-            id: transactionId.toString(), // Ensure ID is stored as a string
-            ident: result.ident || transactionId.toString(),
-            mobile_number: result.mobile_number.toString(),
-            amount: result.plan_amount.toString(),
-            plan_amount: result.plan_amount.toString(),
+            id: randomId.toString(), // 🔹 Use `randomId`
+            ident: result.ident,
+            mobile_number: mobile_number.toString(),
+            amount: amountValue.toString(),
+            plan_amount: amountValue.toString(),
             plan_network: network == 1 ? "Mtn" : network == 2 ? "Glo" : network == 3 ? "9Mobile" : "Airtel",
             Status: "successful",
-            api_response: `You have successfully sent Airtime of ${result.plan_amount.toString()} to ${mobile_number}`,
+            api_response: `You have successfully sent Airtime of ${amountValue} to ${mobile_number}`,
             create_date: create_date,
             Ported_number: true,
             airtime_type: result.airtime_type || "VTU",
@@ -1343,41 +1332,32 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
             plan_name: result.plan_name || "",
         };
 
-        // Get Firestore references
+        // Firestore references
         const userRef = db.collection("users").doc(uid);
-        const transactionRef = userRef.collection("airtime_transaction").doc(transactionId.toString());
+        const transactionRef = userRef.collection("airtime_transaction").doc(randomId.toString());
 
-        // Use Firestore transaction to ensure balance updates safely
-        await db.runTransaction(async (t) => {
-            const userDoc = await t.get(userRef);
-            if (!userDoc.exists) {
-                throw new Error("User not found");
-            }
+        // Fetch user balance
+        const userDoc = await userRef.get();
+        const currentBalance = userDoc.exists && userDoc.data().Balance !== undefined ? userDoc.data().Balance : 0;
 
-            const currentBalance = userDoc.data().Balance || 0;
+        if (currentBalance < amountValue) {
+            return res.status(400).json({ message: "Insufficient balance." });
+        }
 
-            if (currentBalance < amount) {
-                throw new Error("Insufficient balance");
-            }
+        // Deduct balance and store transaction using batch writes (atomic operation)
+        const newBalance = parseFloat((currentBalance - amountValue).toFixed(2));
+        const batch = db.batch();
+        batch.set(transactionRef, transactionData);
+        batch.update(userRef, { Balance: newBalance });
+        await batch.commit(); // 🔹 Perform both operations atomically
 
-            // Deduct balance
-            const newBalance = parseFloat((currentBalance - amount).toFixed(1));
+        return res.status(200).json({ Status: "successful", message: "Airtime purchase successful." });
 
-            // Update balance and store transaction
-            t.update(userRef, { Balance: newBalance });
-            t.set(transactionRef, transactionData);
-        });
-
-        return res.status(200).json(transactionData);
     } catch (error) {
-        console.error("Error:", error.message || error);
-        return res.status(500).json({
-            message: "An error occurred while processing your request.",
-            error: error.message || error,
-        });
+        console.error("Error:", error.response?.data || error.message);
+        res.status(error.response?.status || 500).json({ error: error.response?.data || "An error occurred while processing your request." });
     }
 });
-
 
 
 app.listen(3000, () => {
