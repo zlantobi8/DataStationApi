@@ -1216,7 +1216,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
 
-            return res.status(200).json({
+            return res.status.json({
                 api_response: transactionData.api_response,
                 balance_after: newBalance.toString(),
                 balance_before: currentBalance.toString(),
