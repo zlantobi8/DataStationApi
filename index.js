@@ -1214,26 +1214,28 @@ app.post("/api/buyData", authenticate, async (req, res) => {
             const newBalance = parseFloat((currentBalance - modifiedAMount).toFixed(1));
             await userRef.update({ Balance: newBalance });
 
+            if (res.status === 400) {
 
+                return res.json({
+                    api_response: transactionData.api_response,
+                    balance_after: newBalance.toString(),
+                    balance_before: currentBalance.toString(),
+                    create_date: transactionData.create_date,
+                    customer_ref: transactionData.ident,
+                    id: transactionData.id,
+                    ident: transactionData.ident,
+                    mobile_number: transactionData.mobile_number,
+                    network: "Mtn",
+                    plan: transactionData.plan,
+                    plan_amount: transactionData.plan_amount,
+                    plan_name: transactionData.plan_name,
+                    plan_network: transactionData.plan_name,
+                    Ported_number: transactionData.Ported_number,
+                    Status: transactionData.Status,
 
-            return res.json({
-                api_response: transactionData.api_response,
-                balance_after: newBalance.toString(),
-                balance_before: currentBalance.toString(),
-                create_date: transactionData.create_date,
-                customer_ref:transactionData.ident,
-                id: transactionData.id,
-                ident: transactionData.ident,
-                mobile_number: transactionData.mobile_number,
-                network: "Mtn",
-                plan: transactionData.plan,
-                plan_amount: transactionData.plan_amount,
-                plan_name: transactionData.plan_name,
-                plan_network: transactionData.plan_name,
-                Ported_number: transactionData.Ported_number,
-                Status: transactionData.Status,
+                });
+            }
 
-            });
         } else {
             return res.status(400).json({ message: "Insufficient balance for this transaction" });
         }
