@@ -1193,7 +1193,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
             api_response: `Dear customer you have succesfully shared  ${planName.toString()} to ${mobile_number}`,
             create_date: create_date,
             Ported_number: true,
-            Status: result.Status,
+            Status: "successful",
         };
 
         await db.collection("users").doc(uid).collection("airtime_transaction").doc(result.id.toString()).set(transactionData);
@@ -1231,7 +1231,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
                 plan_name: transactionData.plan_name,
                 plan_network: transactionData.plan_name,
                 Ported_number: transactionData.Ported_number,
-                Status: result.Status,
+                Status: transactionData.Status,
 
             });
         } else {
