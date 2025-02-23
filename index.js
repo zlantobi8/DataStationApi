@@ -1313,16 +1313,19 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
         }
         const randomId = generateRandomId();
         const now = new Date();
-        const create_date = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, -1) + "000";
-
+        const adjustedTime = new Date(now.getTime() + (1 * 60 * 60 * 1000)); // Add 1 hour for UTC+1
+        const create_date = adjustedTime.toISOString().slice(0, -1) + "000";
+        
+        console.log("🔥 Corrected Time:", create_date);
+        
         // Construct transaction object
         const transactionData = {
-            id: randomId.toString(), // 🔹 Use `randomId`
-            ident: result.ident,
+            id: randomId, // 🔹 Use `randomId`
+            ident: result.ident.toString(),
             mobile_number: mobile_number.toString(),
             amount: amountValue.toString(),
             plan_amount: amountValue.toString(),
-            plan_network: network == 1 ? "Mtn" : network == 2 ? "Glo" : network == 3 ? "9Mobile" : "Airtel",
+            plan_network: network == 1 ? "MTN" : network == 2 ? "GLO" : network == 3 ? "9MOBILE" : "AIRTEL",
             Status: "successful",
             api_response: `You have successfully sent Airtime of ${amountValue} to ${mobile_number}`,
             create_date: create_date,
@@ -1333,9 +1336,9 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
         };
 
         // Firestore references
-        const olodo="olodo"
+       
         const userRef = db.collection("users").doc(uid);
-        const transactionRef = userRef.collection("airtime_transaction").doc(olodo);
+        const transactionRef = userRef.collection("airtime_transaction").doc(result.id.toString());
 
         // Fetch user balance
         const userDoc = await userRef.get();
