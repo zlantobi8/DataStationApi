@@ -1142,7 +1142,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
     };
 
     try {
-        const { uid, mobile_number, network, plan } = req.body;
+        let { uid, mobile_number, network, plan } = req.body;
        
   if(network == 3){
       network= 2
