@@ -602,7 +602,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "500MB",
-                    "plan_amount": "143.00"
+                    "plan_amount": "157.50"
                 },
                 {
                     "id": 23,
@@ -612,7 +612,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "1GB",
-                    "plan_amount": "286.00"
+                    "plan_amount": "320.00"
                 },
                 {
                     "id": 24,
@@ -622,7 +622,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "2GB",
-                    "plan_amount": "572.00"
+                    "plan_amount": "630.00"
                 },
                 {
                     "id": 25,
@@ -632,7 +632,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "3GB",
-                    "plan_amount": "858.00"
+                    "plan_amount": "940.00"
                 },
                 {
                     "id": 26,
@@ -642,7 +642,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "5GB",
-                    "plan_amount": "1430.00"
+                    "plan_amount": "1560.00"
                 },
                 {
                     "id": 27,
@@ -652,7 +652,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "2760.00"
+                    "plan_amount": "3110.00"
                 }
             ]
         },
