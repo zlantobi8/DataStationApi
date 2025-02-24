@@ -1143,10 +1143,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
     try {
         const { uid, mobile_number, network, plan } = req.body;
-        const network2;
-        if(network == "3"){
-            network = "2"
-        }
+       
 
         if (!uid || !mobile_number || !network || !plan) {
             return res.status(400).json({ message: "Missing required fields." })
