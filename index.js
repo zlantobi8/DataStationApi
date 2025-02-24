@@ -1144,8 +1144,8 @@ app.post("/api/buyData", authenticate, async (req, res) => {
     try {
         const { uid, mobile_number, network, plan } = req.body;
         const network2;
-        if(network == "2"){
-            network2 = "3"
+        if(network == "3"){
+            network = "2"
         }
 
         if (!uid || !mobile_number || !network || !plan) {
@@ -1160,7 +1160,7 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
 
 
-        const apiRequestData = { network: network2, plan: plan, mobile_number: mobile_number, Ported_number: true };
+        const apiRequestData = { network: network, plan: plan, mobile_number: mobile_number, Ported_number: true };
         console.log("Sending request to external API:", apiRequestData);
 
         const response = await axios.post(url, apiRequestData, { headers });
