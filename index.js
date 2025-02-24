@@ -1147,7 +1147,9 @@ app.post("/api/buyData", authenticate, async (req, res) => {
   if(network == 3){
       network= 2
   }else if (network == 2){
-      network= 3
+      network= 4
+  }else if(network == 4){
+      network=3
   }
         if (!uid || !mobile_number || !network || !plan) {
             return res.status(400).json({ message: "Missing required fields." })
