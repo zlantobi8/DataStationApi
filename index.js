@@ -404,7 +404,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 days",
                     "plan": "500.0MB",
-                    "plan_amount": "128.5"
+                    "plan_amount": "350"
                 },
                 {
                     "id": 7,
@@ -414,7 +414,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 days",
                     "plan": "1.0GB",
-                    "plan_amount": "257.0"
+                    "plan_amount": "650.0"
                 },
                 {
                     "id": 8,
@@ -424,7 +424,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 days",
                     "plan": "2.0GB",
-                    "plan_amount": "514.0"
+                    "plan_amount": "1260.0"
                 },
                 {
                     "id": 44,
@@ -434,7 +434,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 days",
                     "plan": "3.0GB",
-                    "plan_amount": "771.0"
+                    "plan_amount": "1880.0"
                 },
                 {
                     "id": 291,
@@ -454,7 +454,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 days",
                     "plan": "10.0GB",
-                    "plan_amount": "2570.0"
+                    "plan_amount": "6250.0"
                 }
             ],
             "GIFTING": [
