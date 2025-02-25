@@ -538,7 +538,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "500MB",
-                    "plan_amount": "325"
+                    "plan_amount": "325.00"
                 },
                 {
                     "id": 2,
