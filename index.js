@@ -538,7 +538,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "500MB",
-                    "plan_amount": "137.50"
+                    "plan_amount": "330"
                 },
                 {
                     "id": 2,
@@ -548,7 +548,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "1GB",
-                    "plan_amount": "275.00"
+                    "plan_amount": "640.00"
                 },
                 {
                     "id": 3,
@@ -558,7 +558,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "2GB",
-                    "plan_amount": "550.00"
+                    "plan_amount": "1280.00"
                 },
                 {
                     "id": 4,
@@ -568,17 +568,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "3GB",
-                    "plan_amount": "825.00"
-                },
-                {
-                    "id": 5,
-                    "dataplan_id": "5",
-                    "network": 1,
-                    "plan_type": "SME",
-                    "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "5GB",
-                    "plan_amount": "1375.00"
+                    "plan_amount": "1920.00"
                 },
                 {
                     "id": 6,
@@ -588,7 +578,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "2600.00"
+                    "plan_amount": "6400.00"
                 }
             ]
         },
