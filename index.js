@@ -571,6 +571,16 @@ const response1 =
                     "plan": "3GB",
                     "plan_amount": "1950.00"
                 },
+                 {
+                    "id": 175,
+                    "dataplan_id": "175",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_network": "MTN",
+                    "month_validate": "7 Days",
+                    "plan": "5GB",
+                    "plan_amount": "1500.00"
+                },
 
                 {
                     "id": 6,
@@ -594,7 +604,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "500MB",
-                    "plan_amount": "170.50"
+                    "plan_amount": "197.00"
                 },
                 {
                     "id": 23,
@@ -604,7 +614,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "1GB",
-                    "plan_amount": "340.00"
+                    "plan_amount": "394.00"
                 },
                 {
                     "id": 24,
@@ -614,7 +624,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "2GB",
-                    "plan_amount": "680.00"
+                    "plan_amount": "788.00"
                 },
                 {
                     "id": 25,
@@ -624,7 +634,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "3GB",
-                    "plan_amount": "1020.00"
+                    "plan_amount": "1182.00"
                 },
                 {
                     "id": 26,
@@ -634,7 +644,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "5GB",
-                    "plan_amount": "1700.00"
+                    "plan_amount": "1970.00"
                 },
                 {
                     "id": 27,
@@ -644,7 +654,7 @@ const response1 =
                     "plan_network": "GLO",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "3400.00"
+                    "plan_amount": "3940.00"
                 }
             ]
         },
