@@ -668,7 +668,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "500MB",
-                    "plan_amount": "350.00"
+                    "plan_amount": "318.00"
                 },
                 {
                     "id": 29,
@@ -678,7 +678,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "1GB",
-                    "plan_amount": "650.00"
+                    "plan_amount": "635.00"
                 },
                 {
                     "id": 30,
@@ -688,7 +688,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "2GB",
-                    "plan_amount": "1300.00"
+                    "plan_amount": "1270.00"
                 },
                 {
                     "id": 31,
@@ -708,7 +708,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "5GB",
-                    "plan_amount": "3250.00"
+                    "plan_amount": "3175.00"
                 },
                 {
                     "id": 33,
@@ -718,7 +718,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "6500.00"
+                    "plan_amount": "6350.00"
                 }
             ]
         },
