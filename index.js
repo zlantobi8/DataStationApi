@@ -550,6 +550,16 @@ const response1 =
                     "plan": "1GB",
                     "plan_amount": "750.00"
                 },
+{
+                    "id": 263,
+                    "dataplan_id": "263",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_network": "MTN",
+                    "month_validate": "2 Days",
+                    "plan": "2GB",
+                    "plan_amount": "750.00"
+                },
                 
                 {
                     "id": 3,
