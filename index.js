@@ -536,9 +536,9 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "500MB",
-                    "plan_amount": "420.00"
+                    "month_validate": "3 Days",
+                    "plan": "750MB",
+                    "plan_amount": "470.00"
                 },
                 {
                     "id": 2,
@@ -550,26 +550,15 @@ const response1 =
                     "plan": "1.2GB",
                     "plan_amount": "740.00"
                 },
-{
-                    "id": 263,
-                    "dataplan_id": "263",
-                    "network": 1,
-                    "plan_type": "SME",
-                    "plan_network": "MTN",
-                    "month_validate": "2 Days",
-                    "plan": "2GB",
-                    "plan_amount": "750.00"
-                },
-                
                 {
                     "id": 3,
                     "dataplan_id": "3",
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "2GB",
-                    "plan_amount": "1500.00"
+                    "month_validate": "7 Days",
+                    "plan": "1.5GB",
+                    "plan_amount": "2020.00"
                 },
                 {
                     "id": 4,
@@ -578,8 +567,8 @@ const response1 =
                     "plan_type": "SME",
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
-                    "plan": "3GB",
-                    "plan_amount": "2250.00"
+                    "plan": "2.7GB",
+                    "plan_amount": "3000.00"
                 },
                  {
                     "id": 5,
@@ -589,7 +578,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "7 Days",
                     "plan": "5GB",
-                    "plan_amount": "1530.00"
+                    "plan_amount": "1500.00"
                 },
 
                 {
@@ -599,8 +588,8 @@ const response1 =
                     "plan_type": "SME",
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
-                    "plan": "10GB",
-                    "plan_amount": "5200.00"
+                    "plan": "11GB",
+                    "plan_amount": "4920.00"
                 }
             ]
         },
