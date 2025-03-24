@@ -577,8 +577,8 @@ const response1 =
                     "plan_type": "SME",
                     "plan_network": "MTN",
                     "month_validate": "7 Days",
-                    "plan": "5GB",
-                    "plan_amount": "1520.00"
+                    "plan": "6GB",
+                    "plan_amount": "2520.00"
                 },
 
                 {
