@@ -667,7 +667,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "500MB",
-                    "plan_amount": "350.00"
+                    "plan_amount": "390.00"
                 },
                 {
                     "id": 29,
@@ -707,7 +707,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "5GB",
-                    "plan_amount": "4500.00"
+                    "plan_amount": "3950.00"
                 },
                 {
                     "id": 33,
@@ -717,7 +717,7 @@ const response1 =
                     "plan_network": "AIRTEL",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "7000.00"
+                    "plan_amount": "7900.00"
                 }
             ]
         },
