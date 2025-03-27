@@ -557,7 +557,7 @@ const response1 =
                     "dataplan_id": "3",
                     "network": 1,
                     "plan_type": "SME",
-                      "plan_type1": "Cooperate",
+                      "plan_type1": "SME",
                     "plan_network": "MTN",
                     "month_validate": "7 Days",
                     "plan": "1.5GB",
@@ -592,7 +592,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                      "plan_type1": "SME",
+                    "plan_type1": "SME",
                     "month_validate": "30 Days",
                     "plan": "11GB",
                     "plan_amount": "4950.00"
