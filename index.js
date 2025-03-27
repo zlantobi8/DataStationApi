@@ -557,6 +557,7 @@ const response1 =
                     "dataplan_id": "3",
                     "network": 1,
                     "plan_type": "SME",
+                      "plan_type1": "Cooperate",
                     "plan_network": "MTN",
                     "month_validate": "7 Days",
                     "plan": "1.5GB",
@@ -568,6 +569,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
+                      "plan_type1": "GIFTING",
                     "month_validate": "30 Days",
                     "plan": "2.7GB",
                     "plan_amount": "2000.00"
@@ -578,6 +580,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
+                       "plan_type1": "Cooperate",
                     "month_validate": "7 Days",
                     "plan": "6GB",
                     "plan_amount": "2520.00"
@@ -589,6 +592,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
+                      "plan_type1": "SME",
                     "month_validate": "30 Days",
                     "plan": "11GB",
                     "plan_amount": "4950.00"
