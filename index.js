@@ -607,6 +607,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "500MB",
                     "plan_amount": "225.00"
@@ -617,6 +618,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "1GB",
                     "plan_amount": "450.00"
@@ -627,6 +629,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
                     "plan_amount": "900.00"
@@ -637,6 +640,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "3GB",
                     "plan_amount": "1350.00"
@@ -647,6 +651,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "5GB",
                     "plan_amount": "2250.00"
@@ -657,6 +662,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
                     "plan_amount": "4500.00"
@@ -671,6 +677,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "500MB",
                     "plan_amount": "520.00"
@@ -681,6 +688,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "1GB",
                     "plan_amount": "822.00"
@@ -691,6 +699,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
                     "plan_amount": "1547.00"
@@ -701,6 +710,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
+                      "plan_type1": "Cooperate",
                     "month_validate": "7 Days",
                     "plan": "100MB",
                     "plan_amount": "120.00"
@@ -711,6 +721,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "6GB",
                     "plan_amount": "3034.00"
@@ -721,6 +732,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
                     "plan_amount": "4112.00"
@@ -735,6 +747,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "500MB",
                     "plan_amount": "80.00"
@@ -745,6 +758,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "1GB",
                     "plan_amount": "149.00"
@@ -755,6 +769,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
                     "plan_amount": "300.00"
@@ -765,6 +780,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "3GB",
                     "plan_amount": "450.00"
@@ -775,6 +791,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
+                      "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
                     "plan_amount": "1400.00"
