@@ -569,7 +569,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                      "plan_type1": "GIFTING",
+                      "plan_type1": "Gifting",
                     "month_validate": "30 Days",
                     "plan": "2.7GB",
                     "plan_amount": "2000.00"
