@@ -596,7 +596,17 @@ const response1 =
                     "month_validate": "30 Days",
                     "plan": "11GB",
                     "plan_amount": "4950.00"
-                }
+                }  , {
+                    "id": 173,
+                    "dataplan_id": "173",
+                    "network": 1,
+                    "plan_type": "SME",
+                     "plan_type1": "GIFTING",
+                    "plan_network": "MTN",
+                    "month_validate": "1 Days",
+                    "plan": "110MB",
+                    "plan_amount": "100.00"
+                },
             ]
         },
         "GLO_PLAN": {
