@@ -650,6 +650,27 @@ const response1 =
     "month_validate": "30 Days",
     "plan": "3.5GB + 5Mins",
     "plan_amount": "2500.00"
+},{
+    "id": 302,
+    "dataplan_id": "302",
+    "network": 1,
+    "plan_type": "XtraSpecial",
+    "plan_network": "MTN",
+    "plan_type1": "XtraSpecial",
+    "month_validate": "30 Days",
+    "plan": "6.75GB",
+    "plan_amount": "3000.00"
+},
+{
+    "id": 303,
+    "dataplan_id": "303",
+    "network": 1,
+    "plan_type": "XtraSpecial",
+    "plan_network": "MTN",
+    "plan_type1": "XtraSpecial",
+    "month_validate": "30 Days",
+    "plan": "14.5GB",
+    "plan_amount": "5000.00"
 }
             ]
         },
