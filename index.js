@@ -546,7 +546,7 @@ const response1 =
                     "dataplan_id": "2",
                     "network": 1,
                     "plan_type": "SME",
-                    "plan_type1": "Awoof",
+                    "plan_type1": "SME",
                     "plan_network": "MTN",
                     "month_validate": "7 Days",
                     "plan": "1.2GB",
@@ -569,7 +569,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                      "plan_type1": "Gifting",
+                      "plan_type1": "SME",
                     "month_validate": "30 Days",
                     "plan": "2.7GB",
                     "plan_amount": "2000.00"
@@ -580,7 +580,7 @@ const response1 =
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                       "plan_type1": "Xtraspecial",
+                       "plan_type1": "SME",
                     "month_validate": "7 Days",
                     "plan": "6GB",
                     "plan_amount": "2520.00"
