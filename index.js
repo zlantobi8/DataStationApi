@@ -597,16 +597,60 @@ const response1 =
                     "plan": "11GB",
                     "plan_amount": "4950.00"
                 }  , {
-                    "id": 173,
-                    "dataplan_id": "173",
-                    "network": 1,
-                    "plan_type": "SME",
-                     "plan_type1": "GIFTING",
-                    "plan_network": "MTN",
-                    "month_validate": "1 Days",
-                    "plan": "110MB",
-                    "plan_amount": "100.00"
-                },
+    "id": 173,
+    "dataplan_id": "173",
+    "network": 1,
+    "plan_type": "GiftingPlan",
+    "plan_network": "MTN",
+    "plan_type1": "GiftingPlan",
+    "month_validate": "1 Days",
+    "plan": "110MB",
+    "plan_amount": "110.00"
+},
+{
+    "id": 174,
+    "dataplan_id": "174",
+    "network": 1,
+    "plan_type": "GiftingPlan",
+    "plan_network": "MTN",
+    "plan_type1": "GiftingPlan",
+    "month_validate": "1 Days",
+    "plan": "230MB",
+    "plan_amount": "220.00"
+},
+{
+    "id": 175,
+    "dataplan_id": "175",
+    "network": 1,
+    "plan_type": "GiftingPlan",
+    "plan_network": "MTN",
+    "plan_type1": "GiftingPlan",
+    "month_validate": "7 Days",
+    "plan": "6GB",
+    "plan_amount": "2450.00"
+},
+{
+    "id": 176,
+    "dataplan_id": "176",
+    "network": 1,
+    "plan_type": "GiftingPlan",
+    "plan_network": "MTN",
+    "plan_type1": "GiftingPlan",
+    "month_validate": "2 Days",
+    "plan": "2.5GB",
+    "plan_amount": "900.00"
+},
+{
+    "id": 177,
+    "dataplan_id": "177",
+    "network": 1,
+    "plan_type": "GiftingPlan",
+    "plan_network": "MTN",
+    "plan_type1": "GiftingPlan",
+    "month_validate": "30 Days",
+    "plan": "3.5GB + 5Mins",
+    "plan_amount": "2500.00"
+}
             ]
         },
         "GLO_PLAN": {
