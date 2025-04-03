@@ -679,7 +679,7 @@ const response1 =
     "plan_type1": "ThryveData",
     "plan_network": "MTN",
     "month_validate": "30 Days",
-    "plan": "1.8GB + 35 Minutes Talktime + 150 Bulk SMS units",
+    "plan": "1.8GB + 35 Minutes Talktime",
     "plan_amount": "2550.00"
 },
 {
@@ -690,8 +690,8 @@ const response1 =
     "plan_type1": "ThryveData",
     "plan_network": "MTN",
     "month_validate": "30 Days",
-    "plan": "10GB + ₦3000 Talktime + 100 Bulk SMS units + free Ad credits (up to 5,000 impressions on FB & IG via MTN Engauge)",
-    "plan_amount": "3000.00"
+    "plan": "10GB + ₦3000 Talktime",
+    "plan_amount": "3050.00"
 },
             ]
         },
