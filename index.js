@@ -530,17 +530,7 @@ const response1 =
                 }
             ],
             "ALL": [
-                {
-                    "id": 1,
-                    "dataplan_id": "1",
-                    "network": 1,
-                    "plan_type": "SME",
-                     "plan_type1": "SME",
-                    "plan_network": "MTN",
-                    "month_validate": "3 Days",
-                    "plan": "750MB",
-                    "plan_amount": "470.00"
-                },
+          
                 {
                     "id": 340,
                     "dataplan_id": "340",
