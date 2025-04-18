@@ -531,161 +531,158 @@ const response1 =
             ],
             "ALL": [
 
-                
                 {
-                    "id": 304,
-                    "dataplan_id": "304",
+                    "id": 2,
+                    "dataplan_id": "2",
                     "network": 1,
                     "plan_type": "SME",
                     "plan_type1": "SME",
                     "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "500mb",
-                    "plan_amount": "450.00"
-                },
-          
-                {
-                    "id": 340,
-                    "dataplan_id": "340",
-                    "network": 1,
-                    "plan_type": "SME",
-                    "plan_type1": "SME",
-                    "plan_network": "MTN",
-                    "month_validate": "30 Days",
+                    "month_validate": "7 Days",
                     "plan": "1GB",
-                    "plan_amount": "785.00"
+                    "plan_amount": "820.00"
                 },
                 {
-                    "id": 439,
-                    "dataplan_id": "439",
+                    "id": 3,
+                    "dataplan_id": "3",
                     "network": 1,
                     "plan_type": "SME",
-                      "plan_type1": "SME",
+                    "plan_type1": "SME",
                     "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "2GB",
-                    "plan_amount": "1570.00"
+                    "month_validate": "7 Days",
+                    "plan": "1.5GB",
+                    "plan_amount": "1020.00"
                 },
                 {
-                    "id": 440,
-                    "dataplan_id": "440",
+                    "id": 4,
+                    "dataplan_id": "4",
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                      "plan_type1": "SME",
+                    "plan_type1": "SME",
                     "month_validate": "30 Days",
-                    "plan": "3GB",
-                    "plan_amount": "2355.00"
+                    "plan": "2.7GB",
+                    "plan_amount": "2000.00"
                 },
-                 {
-                    "id": 441,
-                    "dataplan_id": "441",
+                {
+                    "id": 5,
+                    "dataplan_id": "5",
                     "network": 1,
                     "plan_type": "SME",
                     "plan_network": "MTN",
-                       "plan_type1": "SME",
-                    "month_validate": "30 Days",
-                    "plan": "5GB",
-                    "plan_amount": "3925.00"
+                    "plan_type1": "SME",
+                    "month_validate": "7 Days",
+                    "plan": "6GB",
+                    "plan_amount": "2520.00"
                 },
 
-               {
-    "id": 173,
-    "dataplan_id": "173",
-    "network": 1,
-    "plan_type": "GiftingPlan",
-    "plan_network": "MTN",
-    "plan_type1": "GiftingPlan",
-    "month_validate": "1 Days",
-    "plan": "110MB",
-    "plan_amount": "110.00"
-},
-{
-    "id": 174,
-    "dataplan_id": "174",
-    "network": 1,
-    "plan_type": "GiftingPlan",
-    "plan_network": "MTN",
-    "plan_type1": "GiftingPlan",
-    "month_validate": "1 Days",
-    "plan": "230MB",
-    "plan_amount": "220.00"
-},
-{
-    "id": 175,
-    "dataplan_id": "175",
-    "network": 1,
-    "plan_type": "GiftingPlan",
-    "plan_network": "MTN",
-    "plan_type1": "GiftingPlan",
-    "month_validate": "7 Days",
-    "plan": "6GB",
-    "plan_amount": "2450.00"
-},
-{
-    "id": 176,
-    "dataplan_id": "176",
-    "network": 1,
-    "plan_type": "GiftingPlan",
-    "plan_network": "MTN",
-    "plan_type1": "GiftingPlan",
-    "month_validate": "2 Days",
-    "plan": "2.5GB",
-    "plan_amount": "900.00"
-},
-{
-    "id": 177,
-    "dataplan_id": "177",
-    "network": 1,
-    "plan_type": "GiftingPlan",
-    "plan_network": "MTN",
-    "plan_type1": "GiftingPlan",
-    "month_validate": "30 Days",
-    "plan": "3.5GB + 5Mins",
-    "plan_amount": "2500.00"
-},{
-    "id": 302,
-    "dataplan_id": "302",
-    "network": 1,
-    "plan_type": "XtraSpecial",
-    "plan_network": "MTN",
-    "plan_type1": "XtraSpecial",
-    "month_validate": "30 Days",
-    "plan": "6.75GB",
-    "plan_amount": "3000.00"
-},
-{
-    "id": 303,
-    "dataplan_id": "303",
-    "network": 1,
-    "plan_type": "XtraSpecial",
-    "plan_network": "MTN",
-    "plan_type1": "XtraSpecial",
-    "month_validate": "30 Days",
-    "plan": "14.5GB",
-    "plan_amount": "5000.00"
-},{
-    "id": 316,
-    "dataplan_id": "316",
-    "network": 1,
-    "plan_type": "ThryveData",
-    "plan_type1": "ThryveData",
-    "plan_network": "MTN",
-    "month_validate": "30 Days",
-    "plan": "1.8GB + 35 Minutes Talktime",
-    "plan_amount": "2550.00"
-},
-{
-    "id": 317,
-    "dataplan_id": "317",
-    "network": 1,
-    "plan_type": "ThryveData",
-    "plan_type1": "ThryveData",
-    "plan_network": "MTN",
-    "month_validate": "30 Days",
-    "plan": "10GB + ₦3000 Talktime",
-    "plan_amount": "3050.00"
-},
+                {
+                    "id": 6,
+                    "dataplan_id": "6",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_network": "MTN",
+                    "plan_type1": "SME",
+                    "month_validate": "30 Days",
+                    "plan": "11GB",
+                    "plan_amount": "4950.00"
+                }, {
+                    "id": 173,
+                    "dataplan_id": "173",
+                    "network": 1,
+                    "plan_type": "GiftingPlan",
+                    "plan_network": "MTN",
+                    "plan_type1": "GiftingPlan",
+                    "month_validate": "1 Days",
+                    "plan": "110MB",
+                    "plan_amount": "110.00"
+                },
+                {
+                    "id": 174,
+                    "dataplan_id": "174",
+                    "network": 1,
+                    "plan_type": "GiftingPlan",
+                    "plan_network": "MTN",
+                    "plan_type1": "GiftingPlan",
+                    "month_validate": "1 Days",
+                    "plan": "230MB",
+                    "plan_amount": "220.00"
+                },
+                {
+                    "id": 175,
+                    "dataplan_id": "175",
+                    "network": 1,
+                    "plan_type": "GiftingPlan",
+                    "plan_network": "MTN",
+                    "plan_type1": "GiftingPlan",
+                    "month_validate": "7 Days",
+                    "plan": "6GB",
+                    "plan_amount": "2450.00"
+                },
+                {
+                    "id": 176,
+                    "dataplan_id": "176",
+                    "network": 1,
+                    "plan_type": "GiftingPlan",
+                    "plan_network": "MTN",
+                    "plan_type1": "GiftingPlan",
+                    "month_validate": "2 Days",
+                    "plan": "2.5GB",
+                    "plan_amount": "900.00"
+                },
+                {
+                    "id": 177,
+                    "dataplan_id": "177",
+                    "network": 1,
+                    "plan_type": "GiftingPlan",
+                    "plan_network": "MTN",
+                    "plan_type1": "GiftingPlan",
+                    "month_validate": "30 Days",
+                    "plan": "3.5GB + 5Mins",
+                    "plan_amount": "2500.00"
+                }, {
+                    "id": 302,
+                    "dataplan_id": "302",
+                    "network": 1,
+                    "plan_type": "XtraSpecial",
+                    "plan_network": "MTN",
+                    "plan_type1": "XtraSpecial",
+                    "month_validate": "30 Days",
+                    "plan": "6.75GB",
+                    "plan_amount": "3000.00"
+                },
+                {
+                    "id": 303,
+                    "dataplan_id": "303",
+                    "network": 1,
+                    "plan_type": "XtraSpecial",
+                    "plan_network": "MTN",
+                    "plan_type1": "XtraSpecial",
+                    "month_validate": "30 Days",
+                    "plan": "14.5GB",
+                    "plan_amount": "5000.00"
+                }, {
+                    "id": 316,
+                    "dataplan_id": "316",
+                    "network": 1,
+                    "plan_type": "ThryveData",
+                    "plan_type1": "ThryveData",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "1.8GB + 35 Minutes Talktime",
+                    "plan_amount": "2550.00"
+                },
+                {
+                    "id": 317,
+                    "dataplan_id": "317",
+                    "network": 1,
+                    "plan_type": "ThryveData",
+                    "plan_type1": "ThryveData",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "10GB + ₦3000 Talktime",
+                    "plan_amount": "3050.00"
+                },
             ]
         },
         "GLO_PLAN": {
@@ -696,7 +693,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "500MB",
                     "plan_amount": "225.00"
@@ -707,7 +704,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "1GB",
                     "plan_amount": "450.00"
@@ -718,7 +715,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
                     "plan_amount": "900.00"
@@ -729,7 +726,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "3GB",
                     "plan_amount": "1350.00"
@@ -740,7 +737,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "5GB",
                     "plan_amount": "2250.00"
@@ -751,7 +748,7 @@ const response1 =
                     "network": 3,
                     "plan_type": "Corporate",
                     "plan_network": "GLO",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
                     "plan_amount": "4500.00"
@@ -766,7 +763,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "500MB",
                     "plan_amount": "520.00"
@@ -777,7 +774,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "1GB",
                     "plan_amount": "822.00"
@@ -788,7 +785,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
                     "plan_amount": "1547.00"
@@ -799,7 +796,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "7 Days",
                     "plan": "100MB",
                     "plan_amount": "120.00"
@@ -810,7 +807,7 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "6GB",
                     "plan_amount": "3034.00"
@@ -821,87 +818,87 @@ const response1 =
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
                     "plan_amount": "4112.00"
-                },{
-    "id": 111,
-    "dataplan_id": "111",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "2 Days",
-    "plan": "150MB",
-    "plan_amount": "80.00"
-},
-{
-    "id": 112,
-    "dataplan_id": "112",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "2 Days",
-    "plan": "300MB",
-    "plan_amount": "140.00"
-},
-{
-    "id": 113,
-    "dataplan_id": "113",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "1 Days",
-    "plan": "1GB",
-    "plan_amount": "400.00"
-},
-{
-    "id": 114,
-    "dataplan_id": "114",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "5 Days",
-    "plan": "2GB",
-    "plan_amount": "720.00"
-},
-{
-    "id": 116,
-    "dataplan_id": "116",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "7 Days",
-    "plan": "3GB",
-    "plan_amount": "1100.00"
-},
-{
-    "id": 117,
-    "dataplan_id": "117",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "7 Days",
-    "plan": "7GB",
-    "plan_amount": "2200.00"
-},
-{
-    "id": 118,
-    "dataplan_id": "118",
-    "network": 2,
-    "plan_type": "SME",
-    "plan_network": "AIRTEL",
-    "plan_type1": "SME",
-    "month_validate": "30 Days",
-    "plan": "10GB",
-    "plan_amount": "3400.00"
-}
+                }, {
+                    "id": 111,
+                    "dataplan_id": "111",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "2 Days",
+                    "plan": "150MB",
+                    "plan_amount": "80.00"
+                },
+                {
+                    "id": 112,
+                    "dataplan_id": "112",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "2 Days",
+                    "plan": "300MB",
+                    "plan_amount": "140.00"
+                },
+                {
+                    "id": 113,
+                    "dataplan_id": "113",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "1 Days",
+                    "plan": "1GB",
+                    "plan_amount": "400.00"
+                },
+                {
+                    "id": 114,
+                    "dataplan_id": "114",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "5 Days",
+                    "plan": "2GB",
+                    "plan_amount": "720.00"
+                },
+                {
+                    "id": 116,
+                    "dataplan_id": "116",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "7 Days",
+                    "plan": "3GB",
+                    "plan_amount": "1100.00"
+                },
+                {
+                    "id": 117,
+                    "dataplan_id": "117",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "7 Days",
+                    "plan": "7GB",
+                    "plan_amount": "2200.00"
+                },
+                {
+                    "id": 118,
+                    "dataplan_id": "118",
+                    "network": 2,
+                    "plan_type": "SME",
+                    "plan_network": "AIRTEL",
+                    "plan_type1": "SME",
+                    "month_validate": "30 Days",
+                    "plan": "10GB",
+                    "plan_amount": "3400.00"
+                }
             ]
         },
         "9MOBILE_PLAN": {
@@ -912,7 +909,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "500MB",
                     "plan_amount": "80.00"
@@ -923,7 +920,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "1GB",
                     "plan_amount": "149.00"
@@ -934,7 +931,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
                     "plan_amount": "300.00"
@@ -945,7 +942,7 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "3GB",
                     "plan_amount": "450.00"
@@ -956,14 +953,14 @@ const response1 =
                     "network": 4,
                     "plan_type": "Corporate",
                     "plan_network": "9MOBILE",
-                      "plan_type1": "Cooperate",
+                    "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
                     "plan_amount": "1400.00"
                 }
             ]
         }
-    }, 
+    },
     "Cableplan": {
         "GOTVPLAN": [
             {
@@ -1332,14 +1329,14 @@ app.post("/api/buyData", authenticate, async (req, res) => {
 
     try {
         let { uid, mobile_number, network, plan } = req.body;
-       
-  if(network == 3){
-      network= 2
-  }else if (network == 2){
-      network= 4
-  }else if(network == 4){
-      network=3
-  }
+
+        if (network == 3) {
+            network = 2
+        } else if (network == 2) {
+            network = 4
+        } else if (network == 4) {
+            network = 3
+        }
         if (!uid || !mobile_number || !network || !plan) {
             return res.status(400).json({ message: "Missing required fields." })
         }
@@ -1378,9 +1375,9 @@ app.post("/api/buyData", authenticate, async (req, res) => {
         const now = new Date();
         const adjustedTime = new Date(now.getTime() + (1 * 60 * 60 * 1000)); // Add 1 hour for UTC+1
         const create_date = adjustedTime.toISOString().slice(0, -1) + "000";
-        
+
         console.log("🔥 Corrected Time:", create_date);
-        
+
 
         const transactionData = {
             id: generateRandomId(),
@@ -1514,9 +1511,9 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
         const now = new Date();
         const adjustedTime = new Date(now.getTime() + (1 * 60 * 60 * 1000)); // Add 1 hour for UTC+1
         const create_date = adjustedTime.toISOString().slice(0, -1) + "000";
-        
+
         console.log("🔥 Corrected Time:", create_date);
-        
+
         // Construct transaction object
         const transactionData = {
             id: randomId, // 🔹 Use `randomId`
@@ -1535,7 +1532,7 @@ app.post("/api/buyAirtime", authenticate, async (req, res) => {
         };
 
         // Firestore references
-       
+
         const userRef = db.collection("users").doc(uid);
         const transactionRef = userRef.collection("airtime_transaction").doc(result.id.toString());
 
