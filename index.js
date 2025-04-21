@@ -541,6 +541,17 @@ const response1 =
                     "plan": "500MB",
                     "plan_amount": "450.00"
                 },
+{
+                    "id": 121,
+                    "dataplan_id": "121",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_type1": "Datashare",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "1GB",
+                    "plan_amount": "700.00"
+                },
 
                 {
                     "id": 340,
