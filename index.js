@@ -810,7 +810,7 @@ const response1 =
                     "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "2GB",
-                    "plan_amount": "1547.00"
+                    "plan_amount": "1557.00"
                 },
                 {
                     "id": 31,
@@ -832,7 +832,7 @@ const response1 =
                     "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "6GB",
-                    "plan_amount": "3034.00"
+                    "plan_amount": "3050.00"
                 },
                 {
                     "id": 33,
@@ -843,7 +843,7 @@ const response1 =
                     "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "4112.00"
+                    "plan_amount": "4200.00"
                 }, {
                     "id": 111,
                     "dataplan_id": "111",
