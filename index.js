@@ -544,6 +544,40 @@ const response1 =
                 },
 
                 {
+                    "id": 122,
+                    "dataplan_id": "122",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_type1": "Datashare",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "2GB",
+                    "plan_amount": "1400.00"
+                },
+                {
+                    "id": 123,
+                    "dataplan_id": "122",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_type1": "Datashare",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "3GB",
+                    "plan_amount": "1900.00"
+                },
+                {
+                    "id": 124,
+                    "dataplan_id": "124",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_type1": "Datashare",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "5GB",
+                    "plan_amount": "3000.00"
+                },
+
+                {
                     "id": 340,
                     "dataplan_id": "340",
                     "network": 1,
@@ -598,103 +632,8 @@ const response1 =
                     "month_validate": "30 Days",
                     "plan": "11GB",
                     "plan_amount": "4950.00"
-                }, {
-                    "id": 173,
-                    "dataplan_id": "173",
-                    "network": 1,
-                    "plan_type": "GiftingPlan",
-                    "plan_network": "MTN",
-                    "plan_type1": "GiftingPlan",
-                    "month_validate": "1 Days",
-                    "plan": "110MB",
-                    "plan_amount": "110.00"
-                },
-                {
-                    "id": 174,
-                    "dataplan_id": "174",
-                    "network": 1,
-                    "plan_type": "GiftingPlan",
-                    "plan_network": "MTN",
-                    "plan_type1": "GiftingPlan",
-                    "month_validate": "1 Days",
-                    "plan": "230MB",
-                    "plan_amount": "220.00"
-                },
-                {
-                    "id": 175,
-                    "dataplan_id": "175",
-                    "network": 1,
-                    "plan_type": "GiftingPlan",
-                    "plan_network": "MTN",
-                    "plan_type1": "GiftingPlan",
-                    "month_validate": "7 Days",
-                    "plan": "6GB",
-                    "plan_amount": "2450.00"
-                },
-                {
-                    "id": 176,
-                    "dataplan_id": "176",
-                    "network": 1,
-                    "plan_type": "GiftingPlan",
-                    "plan_network": "MTN",
-                    "plan_type1": "GiftingPlan",
-                    "month_validate": "2 Days",
-                    "plan": "2.5GB",
-                    "plan_amount": "900.00"
-                },
-                {
-                    "id": 177,
-                    "dataplan_id": "177",
-                    "network": 1,
-                    "plan_type": "GiftingPlan",
-                    "plan_network": "MTN",
-                    "plan_type1": "GiftingPlan",
-                    "month_validate": "30 Days",
-                    "plan": "3.5GB + 5Mins",
-                    "plan_amount": "2500.00"
-                }, {
-                    "id": 302,
-                    "dataplan_id": "302",
-                    "network": 1,
-                    "plan_type": "XtraSpecial",
-                    "plan_network": "MTN",
-                    "plan_type1": "XtraSpecial",
-                    "month_validate": "30 Days",
-                    "plan": "6.75GB",
-                    "plan_amount": "3000.00"
-                },
-                {
-                    "id": 303,
-                    "dataplan_id": "303",
-                    "network": 1,
-                    "plan_type": "XtraSpecial",
-                    "plan_network": "MTN",
-                    "plan_type1": "XtraSpecial",
-                    "month_validate": "30 Days",
-                    "plan": "14.5GB",
-                    "plan_amount": "5000.00"
-                }, {
-                    "id": 316,
-                    "dataplan_id": "316",
-                    "network": 1,
-                    "plan_type": "ThryveData",
-                    "plan_type1": "ThryveData",
-                    "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "1.8GB + 35 Minutes Talktime",
-                    "plan_amount": "2550.00"
-                },
-                {
-                    "id": 317,
-                    "dataplan_id": "317",
-                    "network": 1,
-                    "plan_type": "ThryveData",
-                    "plan_type1": "ThryveData",
-                    "plan_network": "MTN",
-                    "month_validate": "30 Days",
-                    "plan": "10GB + ₦3000 Talktime",
-                    "plan_amount": "3050.00"
-                },
+                }
+              
             ]
         },
         "GLO_PLAN": {
