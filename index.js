@@ -530,6 +530,17 @@ const response1 =
                 }
             ],
             "ALL": [
+      {
+                    "id": 304,
+                    "dataplan_id": "304",
+                    "network": 1,
+                    "plan_type": "SME",
+                    "plan_type1": "Datashare",
+                    "plan_network": "MTN",
+                    "month_validate": "30 Days",
+                    "plan": "500MB",
+                    "plan_amount": "450.00"
+                },
                 
 {
                     "id": 121,
@@ -540,7 +551,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "1GB",
-                    "plan_amount": "700.00"
+                    "plan_amount": "650.00"
                 },
 
                 {
@@ -552,7 +563,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "2GB",
-                    "plan_amount": "1400.00"
+                    "plan_amount": "1200.00"
                 },
                 {
                     "id": 123,
@@ -563,7 +574,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "3GB",
-                    "plan_amount": "1900.00"
+                    "plan_amount": "1700.00"
                 },
                 {
                     "id": 124,
@@ -574,7 +585,7 @@ const response1 =
                     "plan_network": "MTN",
                     "month_validate": "30 Days",
                     "plan": "5GB",
-                    "plan_amount": "3000.00"
+                    "plan_amount": "2500.00"
                 },
 
                 {
