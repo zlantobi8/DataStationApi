@@ -761,7 +761,7 @@ const response1 =
                     "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "6GB",
-                    "plan_amount": "3050.00"
+                    "plan_amount": "3100.00"
                 },
                 {
                     "id": 33,
