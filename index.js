@@ -707,9 +707,9 @@ const response1 =
                     "id": 158,
                     "dataplan_id": "158",
                     "network": 3,
-                    "plan_type": "Gifting",
+                    "plan_type": "Cooperate",
                     "plan_network": "GLO",
-                    "plan_type1": "Cooperate",
+                    "plan_type1": "Gifting_Plan",
                     "month_validate": "30 Days",
                     "plan": "7.5Gb",
                     "plan_amount": "2600.00"
