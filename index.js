@@ -774,15 +774,15 @@ const response1 =
                     "plan_amount": "3100.00"
                 },
                 {
-                    "id": 33,
-                    "dataplan_id": "33",
+                    "id": 118,
+                    "dataplan_id": "118",
                     "network": 2,
                     "plan_type": "Corporate",
                     "plan_network": "AIRTEL",
                     "plan_type1": "Cooperate",
                     "month_validate": "30 Days",
                     "plan": "10GB",
-                    "plan_amount": "4200.00"
+                    "plan_amount": "3500.00"
                 }, {
                     "id": 111,
                     "dataplan_id": "111",
